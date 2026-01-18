@@ -13,7 +13,7 @@ tags: ["blog"]
 
 published on 2026-01-18
 
-this is actually just a copt of the first post :)
+this is actually just a copy of the first post :)
 
 ## what I've done so far
 
