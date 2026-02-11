@@ -1,5 +1,69 @@
 ---
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Projects from "../components/Projects.astro";
 
+const pageTitle = "zane | portfolio";
+
+const projects = [
+  {
+    name: "Swift Language Model",
+    status: "Open Source",
+    videoLabel: "Demo video placeholder",
+    description:
+      "A local-first language model app focused on fast token streaming and practical model benchmarking.",
+    frontendTools: ["SwiftUI", "Metal shaders", "Charts"],
+    backendTools: ["Swift", "Core ML", "Python data scripts"],
+    currentFeatures: [
+      "Interactive prompt runner with token-by-token streaming",
+      "Local model loading and profile presets",
+      "Latency and memory benchmark dashboard",
+    ],
+    nextSteps: [
+      "Add quantized model conversion workflow",
+      "Ship shareable benchmark report exports",
+      "Support batched generation experiments",
+    ],
+  },
+  {
+    name: "TinyTensor",
+    status: "Open Source",
+    videoLabel: "Demo video placeholder",
+    description:
+      "A lightweight tensor library for teaching and quick model experiments with readable APIs.",
+    frontendTools: ["TypeScript", "Vite", "Vitest"],
+    backendTools: ["Node.js", "TypedArray numerics", "CI workflows"],
+    currentFeatures: [
+      "Core tensor ops for matrix and vector math",
+      "Autograd engine for small neural nets",
+      "Minimal API docs with usage examples",
+    ],
+    nextSteps: [
+      "Add convolution and attention primitives",
+      "Improve performance profiling tools",
+      "Publish versioned docs site",
+    ],
+  },
+  {
+    name: "Behavioral Cloning Research",
+    status: "Closed Source",
+    videoLabel: "Demo video placeholder",
+    description:
+      "Research pipeline for imitation learning experiments with reproducible training and evaluation loops.",
+    frontendTools: ["React", "D3", "Tailwind CSS"],
+    backendTools: ["Python", "PyTorch", "Weights & Biases"],
+    currentFeatures: [
+      "Dataset normalization and augmentation jobs",
+      "Reproducible training runs with tracked configs",
+      "Evaluation suite with baseline comparisons",
+    ],
+    nextSteps: [
+      "Integrate policy distillation experiments",
+      "Add real-time rollout analysis dashboard",
+      "Expand benchmark tasks and datasets",
+    ],
+  },
+];
 ---
 
 <html lang="en">
@@ -8,12 +72,26 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>home</title>
+    <title>{pageTitle}</title>
   </head>
-  <body>
-    <a href="/">home</a>
-    <a href="/about/">about</a>
-    <a href="/blog/">blog</a>
-    <h1>my site</h1>
+  <body class="home-page">
+    <main class="page home-layout">
+      <div class="home-hero">
+        <Nav />
+
+        <header class="intro">
+          <h1>Zane</h1>
+          <p class="subtitle">Software Engineer</p>
+          <p>Building small, focused systems with clear tradeoffs.</p>
+          <p>
+            Austin, TX
+            <span class="dot">•</span>
+            <a href="mailto:zane@example.com">zane@example.com</a>
+          </p>
+        </header>
+      </div>
+
+      <Projects projects={projects} />
+    </main>
   </body>
 </html>

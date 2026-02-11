@@ -1,0 +1,222 @@
+html {
+  background: #000;
+  color: #fff;
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 78ch;
+  padding: 2rem 1.25rem 3rem;
+  line-height: 1.55;
+}
+
+body.home-page {
+  max-width: none;
+  padding: 2rem clamp(1rem, 3vw, 2.5rem) 3rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.1rem;
+}
+
+h2 {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+}
+
+p {
+  margin: 0.5rem 0;
+}
+
+a {
+  color: #fff;
+  text-underline-offset: 0.14em;
+}
+
+.page {
+  display: grid;
+  gap: 2rem;
+}
+
+.home-layout {
+  min-height: 100vh;
+  gap: 2.5rem;
+}
+
+.home-hero {
+  width: min(78ch, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 1.2rem;
+  justify-items: center;
+}
+
+.home-page .site-nav {
+  justify-content: center;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.95rem;
+}
+
+.intro {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.home-hero .intro {
+  text-align: center;
+}
+
+.subtitle {
+  color: #d4d4d4;
+  font-size: 1rem;
+  margin-top: 0.15rem;
+}
+
+.dot {
+  margin: 0 0.35rem;
+  color: #b0b0b0;
+}
+
+.section {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.projects-section {
+  width: min(1320px, 100%);
+  margin: 0 auto;
+  min-height: 62vh;
+  align-content: start;
+}
+
+.project-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.15rem;
+}
+
+.projects-section .project-list {
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.25rem;
+}
+
+.project-item {
+  height: 100%;
+}
+
+.project-card {
+  height: 100%;
+  border: 1px solid #262626;
+  background: #080808;
+  border-radius: 14px;
+  padding: 1rem;
+  display: grid;
+  gap: 0.95rem;
+}
+
+.project-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.project-name {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.project-status {
+  font-size: 0.8rem;
+  border-radius: 999px;
+  padding: 0.14rem 0.62rem;
+  border: 1px solid #3a3a3a;
+  color: #e8e8e8;
+  letter-spacing: 0.01em;
+}
+
+.status-open {
+  border-color: #1f7a43;
+  color: #86dbab;
+}
+
+.status-closed {
+  border-color: #7a2f2f;
+  color: #f2acac;
+}
+
+.project-video {
+  aspect-ratio: 16 / 9;
+  border: 1px dashed #3a3a3a;
+  border-radius: 10px;
+  background: #0d0d0d;
+  color: #b6b6b6;
+  display: grid;
+  place-items: center;
+  font-size: 0.9rem;
+}
+
+.project-description {
+  margin: 0;
+  color: #d9d9d9;
+}
+
+.project-block {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.project-block h4 {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #ffffff;
+}
+
+.project-bullets {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.35rem;
+  color: #d4d4d4;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 1.25rem 1rem 2rem;
+  }
+
+  body.home-page {
+    padding: 1.25rem 1rem 2rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .projects-section {
+    min-height: auto;
+  }
+
+  .projects-section .project-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}

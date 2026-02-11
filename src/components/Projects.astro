@@ -1,0 +1,34 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+
+interface Project {
+  name: string;
+  status: "Open Source" | "Closed Source";
+  videoLabel: string;
+  description: string;
+  frontendTools: string[];
+  backendTools: string[];
+  currentFeatures: string[];
+  nextSteps: string[];
+}
+
+interface Props {
+  projects: Project[];
+  heading?: string;
+}
+
+const { projects, heading = "Projects" } = Astro.props as Props;
+---
+
+<section aria-labelledby="projects-heading" class="section projects-section">
+  <h2 id="projects-heading">{heading}</h2>
+  <ul class="project-list">
+    {
+      projects.map((project) => (
+        <li class="project-item">
+          <ProjectCard project={project} />
+        </li>
+      ))
+    }
+  </ul>
+</section>
