@@ -59,14 +59,34 @@ a {
 }
 
 .home-page .site-nav {
-  justify-content: center;
+  justify-self: start;
 }
 
 .site-nav {
   display: flex;
-  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
   gap: 1rem;
   font-size: 0.95rem;
+}
+
+.nav-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.social-icon {
+  width: 1rem;
+  height: 1rem;
+  display: block;
 }
 
 .intro {
@@ -95,7 +115,7 @@ a {
 }
 
 .projects-section {
-  width: min(1320px, 100%);
+  width: 80%;
   margin: 0 auto;
   min-height: 62vh;
   align-content: start;
@@ -110,7 +130,7 @@ a {
 }
 
 .projects-section .project-list {
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.25rem;
 }
 
@@ -218,5 +238,13 @@ a {
   .projects-section .project-list {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  .site-nav {
+    align-items: flex-start;
+  }
+
+  .nav-group {
+    gap: 0.75rem;
   }
 }
