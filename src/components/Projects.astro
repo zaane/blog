@@ -12,23 +12,45 @@ interface Project {
   nextSteps: string[];
 }
 
-interface Props {
+interface ProjectSection {
+  id: string;
+  title: string;
+  description: string;
   projects: Project[];
+}
+
+interface Props {
+  sections: ProjectSection[];
   heading?: string;
 }
 
-const { projects, heading = "Projects" } = Astro.props as Props;
+const { sections } = Astro.props as Props;
 ---
 
 <section aria-labelledby="projects-heading" class="section projects-section">
-  <h2 id="projects-heading">{heading}</h2>
-  <ul class="project-list">
+  <div class="project-categories">
     {
-      projects.map((project) => (
-        <li class="project-item">
-          <ProjectCard project={project} />
-        </li>
+      sections.map((section) => (
+        <section
+          class="project-category"
+          aria-labelledby={`projects-${section.id}`}
+        >
+          <header class="project-category-head">
+            <h3 id={`projects-${section.id}`} class="project-category-title">
+              {section.title}
+            </h3>
+            <p class="project-category-description">{section.description}</p>
+          </header>
+
+          <ul class="project-list">
+            {section.projects.map((project) => (
+              <li class="project-item">
+                <ProjectCard project={project} />
+              </li>
+            ))}
+          </ul>
+        </section>
       ))
     }
-  </ul>
+  </div>
 </section>

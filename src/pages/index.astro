@@ -5,62 +5,142 @@ import Projects from "../components/Projects.astro";
 
 const pageTitle = "zane | portfolio";
 
-const projects = [
+const projectSections = [
   {
-    name: "Swift Language Model",
-    status: "Open Source",
-    videoLabel: "Demo video placeholder",
-    description:
-      "A local-first language model app focused on fast token streaming and practical model benchmarking.",
-    frontendTools: ["SwiftUI", "Metal shaders", "Charts"],
-    backendTools: ["Swift", "Core ML", "Python data scripts"],
-    currentFeatures: [
-      "Interactive prompt runner with token-by-token streaming",
-      "Local model loading and profile presets",
-      "Latency and memory benchmark dashboard",
-    ],
-    nextSteps: [
-      "Add quantized model conversion workflow",
-      "Ship shareable benchmark report exports",
-      "Support batched generation experiments",
+    id: "current",
+    title: "Current Projects",
+    description: "This is where I'm directing my energy right now.",
+    projects: [
+      {
+        name: "Swift Language Model",
+        status: "Open Source",
+        videoLabel: "Demo video placeholder",
+        description:
+          "A local-first language model app focused on fast token streaming and practical model benchmarking.",
+        frontendTools: ["SwiftUI", "Metal shaders", "Charts"],
+        backendTools: ["Swift", "Core ML", "Python data scripts"],
+        currentFeatures: [
+          "Interactive prompt runner with token-by-token streaming",
+          "Local model loading and profile presets",
+          "Latency and memory benchmark dashboard",
+        ],
+        nextSteps: [
+          "Add quantized model conversion workflow",
+          "Ship shareable benchmark report exports",
+          "Support batched generation experiments",
+        ],
+      },
+      {
+        name: "TinyTensor",
+        status: "Open Source",
+        videoLabel: "Demo video placeholder",
+        description:
+          "A lightweight tensor library for teaching and quick model experiments with readable APIs.",
+        frontendTools: ["TypeScript", "Vite", "Vitest"],
+        backendTools: ["Node.js", "TypedArray numerics", "CI workflows"],
+        currentFeatures: [
+          "Core tensor ops for matrix and vector math",
+          "Autograd engine for small neural nets",
+          "Minimal API docs with usage examples",
+        ],
+        nextSteps: [
+          "Add convolution and attention primitives",
+          "Improve performance profiling tools",
+          "Publish versioned docs site",
+        ],
+      },
     ],
   },
   {
-    name: "TinyTensor",
-    status: "Open Source",
-    videoLabel: "Demo video placeholder",
+    id: "past",
+    title: "Past Projects",
     description:
-      "A lightweight tensor library for teaching and quick model experiments with readable APIs.",
-    frontendTools: ["TypeScript", "Vite", "Vitest"],
-    backendTools: ["Node.js", "TypedArray numerics", "CI workflows"],
-    currentFeatures: [
-      "Core tensor ops for matrix and vector math",
-      "Autograd engine for small neural nets",
-      "Minimal API docs with usage examples",
-    ],
-    nextSteps: [
-      "Add convolution and attention primitives",
-      "Improve performance profiling tools",
-      "Publish versioned docs site",
+      "Things I'm not working on currently, but that I either finished or plan to pick back up in the future.",
+    projects: [
+      {
+        name: "Local Trail Mapper",
+        status: "Open Source",
+        videoLabel: "Demo video placeholder",
+        description:
+          "A map-first hiking planner that combines trail overlays, distance filters, and saved route notes.",
+        frontendTools: ["React", "Leaflet", "CSS Modules"],
+        backendTools: ["Node.js", "PostgreSQL", "OpenStreetMap APIs"],
+        currentFeatures: [
+          "Search and filter trails by distance and elevation gain",
+          "Saved routes with personal trail notes",
+          "Lightweight route share links",
+        ],
+        nextSteps: [
+          "Add offline map caching for low-signal trails",
+          "Support GPX import and export",
+          "Integrate weather risk indicators",
+        ],
+      },
+      {
+        name: "Practice Interview Board",
+        status: "Closed Source",
+        videoLabel: "Demo video placeholder",
+        description:
+          "A collaborative coding board built for small-group mock interviews and pair-debugging sessions.",
+        frontendTools: ["Vue", "Monaco Editor", "Socket.io client"],
+        backendTools: ["Go", "WebSockets", "Redis"],
+        currentFeatures: [
+          "Real-time collaborative editor sessions",
+          "Shared timer and note-taking pane",
+          "Session playback for retrospective review",
+        ],
+        nextSteps: [
+          "Add role-based interviewer controls",
+          "Build AI-generated problem warmups",
+          "Enable private team workspaces",
+        ],
+      },
     ],
   },
   {
-    name: "Behavioral Cloning Research",
-    status: "Closed Source",
-    videoLabel: "Demo video placeholder",
+    id: "guided",
+    title: "Guided Projects",
     description:
-      "Research pipeline for imitation learning experiments with reproducible training and evaluation loops.",
-    frontendTools: ["React", "D3", "Tailwind CSS"],
-    backendTools: ["Python", "PyTorch", "Weights & Biases"],
-    currentFeatures: [
-      "Dataset normalization and augmentation jobs",
-      "Reproducible training runs with tracked configs",
-      "Evaluation suite with baseline comparisons",
-    ],
-    nextSteps: [
-      "Integrate policy distillation experiments",
-      "Add real-time rollout analysis dashboard",
-      "Expand benchmark tasks and datasets",
+      "Structured builds and curriculum-driven projects completed to develop specific skills or to learn more about the tools I use every day.",
+    projects: [
+      {
+        name: "Realtime Chat App (Guided)",
+        status: "Open Source",
+        videoLabel: "Demo video placeholder",
+        description:
+          "A full-stack chat app built from a guided curriculum to practice auth, websockets, and deployment.",
+        frontendTools: ["Next.js", "TypeScript", "Tailwind CSS"],
+        backendTools: ["Supabase", "PostgreSQL", "Edge Functions"],
+        currentFeatures: [
+          "Multi-room realtime messaging",
+          "Email auth and profile settings",
+          "Message history with pagination",
+        ],
+        nextSteps: [
+          "Add file attachments and previews",
+          "Introduce message reactions",
+          "Harden moderation and abuse tooling",
+        ],
+      },
+      {
+        name: "Mini E-Commerce Platform (Guided)",
+        status: "Open Source",
+        videoLabel: "Demo video placeholder",
+        description:
+          "A storefront and admin dashboard built in a guided series focused on clean architecture patterns.",
+        frontendTools: ["Astro", "React", "Stripe UI components"],
+        backendTools: ["Node.js", "Stripe API", "SQLite"],
+        currentFeatures: [
+          "Product catalog and search",
+          "Cart, checkout, and order confirmation flow",
+          "Basic admin inventory tools",
+        ],
+        nextSteps: [
+          "Add role-based admin permissions",
+          "Automate invoice export and reporting",
+          "Expand checkout test coverage",
+        ],
+      },
     ],
   },
 ];
@@ -80,18 +160,33 @@ const projects = [
         <Nav />
 
         <header class="intro">
-          <h1>Zane</h1>
-          <p class="subtitle">Software Engineer</p>
-          <p>Building small, focused systems with clear tradeoffs.</p>
-          <p>
-            Austin, TX
-            <span class="dot">•</span>
-            <a href="mailto:zane@example.com">zane@example.com</a>
-          </p>
+          <span class="intro-header">
+            <h1>Zane Olds</h1>
+            <span class="subtitle">Teacher, learner, software creator.</span>
+            <div>
+              Seattle, WA
+              <span class="dot">•</span>
+              <a href="mailto:zaneolds@gmail.com">zaneolds@gmail.com</a>
+            </div>
+          </span>
+          <div class="copy">
+            <p>
+              Trained in physics and mathematics with a passion for solving hard
+              problems and communicating technical ideas, I’ve spent the last
+              few years helping others learn: from Calculus, Physics, and
+              Chemistry to English, Psychology and World History.
+            </p>
+            <p>
+              My passion for learning brought me to studying foreign languages,
+              and then to learning software development to try to make the
+              process easier for myself. Now I'm building educational software
+              and trying to make learning easier for everyone.
+            </p>
+          </div>
         </header>
       </div>
 
-      <Projects projects={projects} />
+      <Projects sections={projectSections} />
     </main>
   </body>
 </html>
