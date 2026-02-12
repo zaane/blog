@@ -4,7 +4,10 @@ import { defineConfig } from "astro/config";
 const site = process.env.SITE_URL;
 
 // https://astro.build/config
-export default defineConfig({
-  site: "https://zaane.github.io",
-  base: "/blog"
-});
+export default defineConfig(
+  site
+    ? {
+        site,
+      }
+    : {},
+);
