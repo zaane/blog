@@ -1,0 +1,34 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: "website" | "article";
+}
+
+const {
+  title,
+  description,
+  image = "/orca.svg",
+  type = "website",
+} = Astro.props;
+
+const siteOrigin = Astro.site ? new URL(Astro.site).origin : Astro.url.origin;
+const pageUrl = new URL(Astro.url.pathname, siteOrigin).toString();
+const imageUrl = new URL(image, siteOrigin).toString();
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={pageUrl} />
+
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={pageUrl} />
+<meta property="og:image" content={imageUrl} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />

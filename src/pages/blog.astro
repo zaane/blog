@@ -1,8 +1,11 @@
 ---
 import "../styles/global.css";
 import Nav from "../components/Nav.astro";
+import SEO from "../components/SEO.astro";
 
-const pageTitle = "blog";
+const pageTitle = "Blog | Zane Olds";
+const pageDescription =
+  "Posts on software projects, language learning, and technical writeups from Zane Olds.";
 ---
 
 <html lang="en">
@@ -11,7 +14,7 @@ const pageTitle = "blog";
     <link rel="icon" type="image/svg+xml" href="/orca.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
+    <SEO title={pageTitle} description={pageDescription} />
   </head>
   <body>
     <Nav />
