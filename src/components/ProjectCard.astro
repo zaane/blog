@@ -27,15 +27,17 @@ const statusClass =
     <span class={`project-status ${statusClass}`}>{project.status}</span>
   </header>
 
-  <div
-    class="project-video"
-    role="img"
-    aria-label={`Video placeholder for ${project.name}`}
-  >
-    {project.videoLabel}
-  </div>
+  <div class="project-main-content">
+    <div
+      class="project-video"
+      role="img"
+      aria-label={`Video placeholder for ${project.name}`}
+    >
+      {project.videoLabel}
+    </div>
 
-  <p class="project-description">{project.description}</p>
+    <p class="project-description">{project.description}</p>
+  </div>
 
   <section class="project-block project-block-features">
     <h4>Features</h4>
