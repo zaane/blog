@@ -4,8 +4,10 @@ interface Project {
   status: "Open Source" | "Closed Source";
   videoLabel: string;
   description: string;
-  frontendTools: string[];
-  backendTools: string[];
+  techStack: {
+    frontend: string[];
+    backend: string[];
+  };
   currentFeatures: string[];
   nextSteps: string[];
 }
@@ -15,7 +17,8 @@ interface Props {
 }
 
 const { project } = Astro.props as Props;
-const statusClass = project.status === "Open Source" ? "status-open" : "status-closed";
+const statusClass =
+  project.status === "Open Source" ? "status-open" : "status-closed";
 ---
 
 <article class="project-card">
@@ -24,37 +27,42 @@ const statusClass = project.status === "Open Source" ? "status-open" : "status-c
     <span class={`project-status ${statusClass}`}>{project.status}</span>
   </header>
 
-  <div class="project-video" role="img" aria-label={`Video placeholder for ${project.name}`}>
+  <div
+    class="project-video"
+    role="img"
+    aria-label={`Video placeholder for ${project.name}`}
+  >
     {project.videoLabel}
   </div>
 
   <p class="project-description">{project.description}</p>
 
   <section class="project-block">
-    <h4>Current Features</h4>
+    <h4>Features</h4>
     <ul class="project-bullets">
       {project.currentFeatures.map((feature) => <li>{feature}</li>)}
     </ul>
   </section>
 
   <section class="project-block">
-    <h4>Next Steps</h4>
+    <h4>Roadmap</h4>
     <ul class="project-bullets">
       {project.nextSteps.map((step) => <li>{step}</li>)}
     </ul>
   </section>
 
-  <section class="project-block">
-    <h4>Frontend Tools / Skills</h4>
-    <ul class="project-bullets">
-      {project.frontendTools.map((tool) => <li>{tool}</li>)}
-    </ul>
-  </section>
-
-  <section class="project-block">
-    <h4>Backend Tools / Skills</h4>
-    <ul class="project-bullets">
-      {project.backendTools.map((tool) => <li>{tool}</li>)}
-    </ul>
+  <section class="project-block project-tech-stack">
+    <section class="project-subblock">
+      <h4>Frontend</h4>
+      <ul class="project-bullets">
+        {project.techStack.frontend.map((tool) => <li>{tool}</li>)}
+      </ul>
+    </section>
+    <section class="project-subblock">
+      <h4>Backend</h4>
+      <ul class="project-bullets">
+        {project.techStack.backend.map((tool) => <li>{tool}</li>)}
+      </ul>
+    </section>
   </section>
 </article>

@@ -17,37 +17,90 @@ const projectSections = [
         videoLabel: "Demo video placeholder",
         description:
           "A platform for tracking and learning foreign language vocabulary through immersion: reading books and content on the web, and watching videos, shows, and movies.",
-        frontendTools: ["SwiftUI", "Metal shaders", "Charts"],
-        backendTools: ["Swift", "Core ML", "Python data scripts"],
+        techStack: {
+          frontend: [
+            "React/Typescript with React Router and Tanstack Query",
+            "Custom CSS design system and responsive design",
+            "???",
+          ],
+          backend: [
+            "Python/FastAPI",
+            "Multi-lingual NLP with spaCy, .epub and YouTube data scraping + parsing",
+            "Service/repository design pattern with dependency injection of database connection and machine learning models",
+          ],
+        },
         currentFeatures: [
-          "Read ebooks with inline vocabulary lookup. Data stored locally for 0 latency and offline availability.",
-          "See new words visibly highlighted before reading, allowing pre-studying to improve immersion.",
+          "Read ebooks with inline vocabulary lookup. Dictionary stored locally for 0 latency and offline availability.",
+          "See new words visibly highlighted before reading, allowing pre-studying to enhance immersion.",
           "Mark words as known or learning, and create + export flashcards to Anki for spaced repetition studying.",
           "Query LLMs to help understand words in context and add information to flashcards.",
         ],
         nextSteps: [
-          "Add quantized model conversion workflow",
-          "Ship shareable benchmark report exports",
-          "Support batched generation experiments",
+          "Create dashboard views so the user can view their vocabulary progress and gauge their readiness for new content.",
+          "Integrate word tracking into YouTube viewer to faciliate learning from video content. Use official YouTube API to let users log in and access playlists.",
+          "Enhance ebook parsing to be more robust in the face of varied ebook formats.",
+          "Create a browser extension to allow importing arbitrary content from the web.",
         ],
       },
       {
-        name: "TinyTensor",
-        status: "Open Source",
+        name: "(Not!) Spelling Bee",
+        status: "Closed Source",
         videoLabel: "Demo video placeholder",
         description:
-          "A lightweight tensor library for teaching and quick model experiments with readable APIs.",
-        frontendTools: ["TypeScript", "Vite", "Vitest"],
-        backendTools: ["Node.js", "TypedArray numerics", "CI workflows"],
+          "A clone of the popular word game from the New York Times, but for languages other than English.",
+        techStack: {
+          frontend: [
+            "React/Typescript with React Router and TanStack Query",
+            "Faithful recreation of the original game with language-specific enhancements",
+            "???",
+          ],
+          backend: [
+            "Python/FastAPI",
+            "Prefix tree data structure for efficient processing and retrieval of game data",
+            "???",
+          ],
+        },
         currentFeatures: [
-          "Core tensor ops for matrix and vector math",
-          "Autograd engine for small neural nets",
-          "Minimal API docs with usage examples",
+          "Play Spelling Bee in Italian!",
+          "Use modified input controls to allow inputting of accented characters.",
+          "Easily click through found words to see definitions from wiktionary",
+          "Admin dashboard for curation and scheduling of games, and deleting invalid words that made it past initial filters.",
         ],
         nextSteps: [
-          "Add convolution and attention primitives",
-          "Improve performance profiling tools",
-          "Publish versioned docs site",
+          "Set up user authentication and allow creation of accounts.",
+          "Add Spanish and English support, with other languages down the line.",
+          "Integrate with leggera backend to enhance language learning utility.",
+        ],
+      },
+      {
+        name: "Wiktionary Database/API",
+        status: "Closed Source",
+        videoLabel: "Demo video placeholder",
+        description:
+          "A platform for tracking and learning foreign language vocabulary through immersion: reading books and content on the web, and watching videos, shows, and movies.",
+        techStack: {
+          frontend: [
+            "React/Typescript with React Router and Tanstack Query",
+            "Custom CSS design system and responsive design",
+            "???",
+          ],
+          backend: [
+            "Python/FastAPI",
+            "Multi-lingual NLP with spaCy, .epub and YouTube data scraping + parsing",
+            "Service/repository design pattern with dependency injection of database connection and machine learning models",
+          ],
+        },
+        currentFeatures: [
+          "Read ebooks with inline vocabulary lookup. Dictionary stored locally for 0 latency and offline availability.",
+          "See new words visibly highlighted before reading, allowing pre-studying to enhance immersion.",
+          "Mark words as known or learning, and create + export flashcards to Anki for spaced repetition studying.",
+          "Query LLMs to help understand words in context and add information to flashcards.",
+        ],
+        nextSteps: [
+          "Create dashboard views so the user can view their vocabulary progress and gauge their readiness for new content.",
+          "Integrate word tracking into YouTube viewer to faciliate learning from video content. Use official YouTube API to let users log in and access playlists.",
+          "Enhance ebook parsing to be more robust in the face of varied ebook formats.",
+          "Create a browser extension to allow importing arbitrary content from the web.",
         ],
       },
     ],
@@ -64,8 +117,10 @@ const projectSections = [
         videoLabel: "Demo video placeholder",
         description:
           "A map-first hiking planner that combines trail overlays, distance filters, and saved route notes.",
-        frontendTools: ["React", "Leaflet", "CSS Modules"],
-        backendTools: ["Node.js", "PostgreSQL", "OpenStreetMap APIs"],
+        techStack: {
+          frontend: ["React", "Leaflet", "CSS Modules"],
+          backend: ["Node.js", "PostgreSQL", "OpenStreetMap APIs"],
+        },
         currentFeatures: [
           "Search and filter trails by distance and elevation gain",
           "Saved routes with personal trail notes",
@@ -83,8 +138,10 @@ const projectSections = [
         videoLabel: "Demo video placeholder",
         description:
           "A collaborative coding board built for small-group mock interviews and pair-debugging sessions.",
-        frontendTools: ["Vue", "Monaco Editor", "Socket.io client"],
-        backendTools: ["Go", "WebSockets", "Redis"],
+        techStack: {
+          frontend: ["Vue", "Monaco Editor", "Socket.io client"],
+          backend: ["Go", "WebSockets", "Redis"],
+        },
         currentFeatures: [
           "Real-time collaborative editor sessions",
           "Shared timer and note-taking pane",
@@ -110,8 +167,10 @@ const projectSections = [
         videoLabel: "Demo video placeholder",
         description:
           "A full-stack chat app built from a guided curriculum to practice auth, websockets, and deployment.",
-        frontendTools: ["Next.js", "TypeScript", "Tailwind CSS"],
-        backendTools: ["Supabase", "PostgreSQL", "Edge Functions"],
+        techStack: {
+          frontend: ["Next.js", "TypeScript", "Tailwind CSS"],
+          backend: ["Supabase", "PostgreSQL", "Edge Functions"],
+        },
         currentFeatures: [
           "Multi-room realtime messaging",
           "Email auth and profile settings",
@@ -129,8 +188,10 @@ const projectSections = [
         videoLabel: "Demo video placeholder",
         description:
           "A storefront and admin dashboard built in a guided series focused on clean architecture patterns.",
-        frontendTools: ["Astro", "React", "Stripe UI components"],
-        backendTools: ["Node.js", "Stripe API", "SQLite"],
+        techStack: {
+          frontend: ["Astro", "React", "Stripe UI components"],
+          backend: ["Node.js", "Stripe API", "SQLite"],
+        },
         currentFeatures: [
           "Product catalog and search",
           "Cart, checkout, and order confirmation flow",

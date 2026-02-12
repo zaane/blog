@@ -6,8 +6,10 @@ interface Project {
   status: "Open Source" | "Closed Source";
   videoLabel: string;
   description: string;
-  frontendTools: string[];
-  backendTools: string[];
+  techStack: {
+    frontend: string[];
+    backend: string[];
+  };
   currentFeatures: string[];
   nextSteps: string[];
 }
