@@ -3,15 +3,15 @@ import ProjectCard from "./ProjectCard.astro";
 
 interface Project {
   name: string;
-  status: "Open Source" | "Closed Source";
-  videoLabel: string;
-  description: string;
-  techStack: {
+  status?: "Open Source" | "Closed Source";
+  videoLabel?: string;
+  description?: string;
+  techStack?: {
     frontend: string[];
     backend: string[];
   };
-  currentFeatures: string[];
-  nextSteps: string[];
+  currentFeatures?: string[];
+  nextSteps?: string[];
 }
 
 interface ProjectSection {
@@ -34,7 +34,7 @@ const { sections } = Astro.props as Props;
     {
       sections.map((section) => (
         <section
-          class="project-category"
+          class={`project-category project-category-${section.id}`}
           aria-labelledby={`projects-${section.id}`}
         >
           <header class="project-category-head">
@@ -44,13 +44,21 @@ const { sections } = Astro.props as Props;
             <p class="project-category-description">{section.description}</p>
           </header>
 
-          <ul class="project-list">
-            {section.projects.map((project) => (
-              <li class="project-item">
-                <ProjectCard project={project} />
-              </li>
-            ))}
-          </ul>
+          {
+            section.projects.length > 0 ? (
+              <ul class="project-list">
+                {section.projects.map((project) => (
+                  <li class="project-item">
+                    <ProjectCard project={project} />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div class="project-coming-soon" role="status">
+                Coming soon.
+              </div>
+            )
+          }
         </section>
       ))
     }

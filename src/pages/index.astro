@@ -27,7 +27,7 @@ const projectSections = [
             "Python/FastAPI",
             "Multi-lingual natural language processing with spaCy",
             ".epub and YouTube data scraping + parsing",
-            "Service/repository design pattern with dependency injection of database connection and machine learning models",
+            "Service/repository design with dependency injection of database connection and machine learning models",
           ],
         },
         currentFeatures: [
@@ -68,7 +68,7 @@ const projectSections = [
           "Admin dashboard for curation and scheduling of games, and deleting invalid words that made it past initial filters.",
         ],
         nextSteps: [
-          "Set up user authentication and allow creation of accounts.",
+          "Set up user authentication and role-based access.",
           "Add Spanish and English support, with other languages down the line.",
           "Integrate with leggera backend to enhance language learning utility.",
         ],
@@ -110,50 +110,13 @@ const projectSections = [
     id: "past",
     title: "Past Projects",
     description:
-      "Things I'm not working on currently, but that I either finished or plan to pick back up in the future.",
+      "Things I'm not working on currently, but that I either finished or plan to pick back up in the future. I intend to share more details about these and also write in depth about some of them later.",
     projects: [
-      {
-        name: "Local Trail Mapper",
-        status: "Open Source",
-        videoLabel: "Demo video placeholder",
-        description:
-          "A map-first hiking planner that combines trail overlays, distance filters, and saved route notes.",
-        techStack: {
-          frontend: ["React", "Leaflet", "CSS Modules"],
-          backend: ["Node.js", "PostgreSQL", "OpenStreetMap APIs"],
-        },
-        currentFeatures: [
-          "Search and filter trails by distance and elevation gain",
-          "Saved routes with personal trail notes",
-          "Lightweight route share links",
-        ],
-        nextSteps: [
-          "Add offline map caching for low-signal trails",
-          "Support GPX import and export",
-          "Integrate weather risk indicators",
-        ],
-      },
-      {
-        name: "Practice Interview Board",
-        status: "Closed Source",
-        videoLabel: "Demo video placeholder",
-        description:
-          "A collaborative coding board built for small-group mock interviews and pair-debugging sessions.",
-        techStack: {
-          frontend: ["Vue", "Monaco Editor", "Socket.io client"],
-          backend: ["Go", "WebSockets", "Redis"],
-        },
-        currentFeatures: [
-          "Real-time collaborative editor sessions",
-          "Shared timer and note-taking pane",
-          "Session playback for retrospective review",
-        ],
-        nextSteps: [
-          "Add role-based interviewer controls",
-          "Build AI-generated problem warmups",
-          "Enable private team workspaces",
-        ],
-      },
+      { name: "Kroger grocery receipt tracker" },
+      { name: "Italian grammar construct generator" },
+      { name: "Math practice problem generator" },
+      { name: "Statistics concept visualizer" },
+      { name: "Smart light controller webapp" },
     ],
   },
   {
@@ -161,50 +124,7 @@ const projectSections = [
     title: "Guided Projects",
     description:
       "Structured builds and curriculum-driven projects completed to develop specific skills or to learn more about the tools I use every day.",
-    projects: [
-      {
-        name: "Realtime Chat App (Guided)",
-        status: "Open Source",
-        videoLabel: "Demo video placeholder",
-        description:
-          "A full-stack chat app built from a guided curriculum to practice auth, websockets, and deployment.",
-        techStack: {
-          frontend: ["Next.js", "TypeScript", "Tailwind CSS"],
-          backend: ["Supabase", "PostgreSQL", "Edge Functions"],
-        },
-        currentFeatures: [
-          "Multi-room realtime messaging",
-          "Email auth and profile settings",
-          "Message history with pagination",
-        ],
-        nextSteps: [
-          "Add file attachments and previews",
-          "Introduce message reactions",
-          "Harden moderation and abuse tooling",
-        ],
-      },
-      {
-        name: "Mini E-Commerce Platform (Guided)",
-        status: "Open Source",
-        videoLabel: "Demo video placeholder",
-        description:
-          "A storefront and admin dashboard built in a guided series focused on clean architecture patterns.",
-        techStack: {
-          frontend: ["Astro", "React", "Stripe UI components"],
-          backend: ["Node.js", "Stripe API", "SQLite"],
-        },
-        currentFeatures: [
-          "Product catalog and search",
-          "Cart, checkout, and order confirmation flow",
-          "Basic admin inventory tools",
-        ],
-        nextSteps: [
-          "Add role-based admin permissions",
-          "Automate invoice export and reporting",
-          "Expand checkout test coverage",
-        ],
-      },
-    ],
+    projects: [],
   },
 ];
 ---

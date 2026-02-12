@@ -261,6 +261,10 @@ a {
   gap: 5rem;
 }
 
+.project-category-past .project-list {
+  gap: 2rem;
+}
+
 .project-item {
   flex: none;
   width: 100%;
@@ -539,6 +543,10 @@ a {
   .projects-section .project-list {
     gap: 1rem;
     align-items: stretch;
+  }
+
+  .project-category-past .project-list {
+    gap: 2;
   }
 
   .project-item {

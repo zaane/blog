@@ -1,15 +1,15 @@
 ---
 interface Project {
   name: string;
-  status: "Open Source" | "Closed Source";
-  videoLabel: string;
-  description: string;
-  techStack: {
+  status?: "Open Source" | "Closed Source";
+  videoLabel?: string;
+  description?: string;
+  techStack?: {
     frontend: string[];
     backend: string[];
   };
-  currentFeatures: string[];
-  nextSteps: string[];
+  currentFeatures?: string[];
+  nextSteps?: string[];
 }
 
 interface Props {
@@ -17,54 +17,66 @@ interface Props {
 }
 
 const { project } = Astro.props as Props;
+const isComingSoon = !project.status;
 const statusClass =
   project.status === "Open Source" ? "status-open" : "status-closed";
 ---
 
-<article class="project-card">
-  <header class="project-card-head">
-    <h3 class="project-name">{project.name}</h3>
-    <span class={`project-status ${statusClass}`}>{project.status}</span>
-  </header>
+<article class={`project-card ${isComingSoon ? "coming-soon" : ""}`}>
+  {
+    isComingSoon ? (
+      <>
+        <h3 class="coming-soon-title">{project.name}</h3>
+        <p class="coming-soon-description">Details coming soon</p>
+      </>
+    ) : (
+      <>
+        <header class="project-card-head">
+          <h3 class="project-name">{project.name}</h3>
+          <span class={`project-status ${statusClass}`}>{project.status}</span>
+        </header>
 
-  <div class="project-main-content">
-    <div
-      class="project-video"
-      role="img"
-      aria-label={`Video placeholder for ${project.name}`}
-    >
-      {project.videoLabel}
-    </div>
+        <div class="project-main-content">
+          <div
+            class="project-video"
+            role="img"
+            aria-label={`Video placeholder for ${project.name}`}
+          >
+            {project.videoLabel}
+          </div>
 
-    <p class="project-description">{project.description}</p>
-  </div>
+          <p class="project-description">{project.description}</p>
+        </div>
 
-  <section class="project-block project-block-features">
-    <h4>Features</h4>
-    <ul class="project-bullets">
-      {project.currentFeatures.map((feature) => <li>{feature}</li>)}
-    </ul>
-  </section>
+        <section class="project-block project-block-features">
+          <h4>Features</h4>
+          <ul class="project-bullets">
+            {(project.currentFeatures ?? []).map((feature) => <li>{feature}</li>)}
+          </ul>
+        </section>
 
-  <section class="project-block project-block-roadmap">
-    <h4>Roadmap</h4>
-    <ul class="project-bullets">
-      {project.nextSteps.map((step) => <li>{step}</li>)}
-    </ul>
-  </section>
+        <section class="project-block project-block-roadmap">
+          <h4>Roadmap</h4>
+          <ul class="project-bullets">
+            {(project.nextSteps ?? []).map((step) => <li>{step}</li>)}
+          </ul>
+        </section>
 
-  <section class="project-block project-block-tech project-tech-stack">
-    <section class="project-subblock project-subblock-frontend">
-      <h4>Frontend</h4>
-      <ul class="project-bullets">
-        {project.techStack.frontend.map((tool) => <li>{tool}</li>)}
-      </ul>
-    </section>
-    <section class="project-subblock project-subblock-backend">
-      <h4>Backend</h4>
-      <ul class="project-bullets">
-        {project.techStack.backend.map((tool) => <li>{tool}</li>)}
-      </ul>
-    </section>
-  </section>
+        <section class="project-block project-block-tech project-tech-stack">
+          <section class="project-subblock project-subblock-frontend">
+            <h4>Frontend</h4>
+            <ul class="project-bullets">
+              {(project.techStack?.frontend ?? []).map((tool) => <li>{tool}</li>)}
+            </ul>
+          </section>
+          <section class="project-subblock project-subblock-backend">
+            <h4>Backend</h4>
+            <ul class="project-bullets">
+              {(project.techStack?.backend ?? []).map((tool) => <li>{tool}</li>)}
+            </ul>
+          </section>
+        </section>
+      </>
+    )
+  }
 </article>
