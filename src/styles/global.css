@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+
 :root {
   --gray-100: #f5f5f5;
   --gray-200: #e5e5e5;
@@ -8,6 +10,18 @@
   --gray-700: #3f3f3f;
   --gray-800: #101010;
   --gray-900: #000000;
+  --blue-300: #7ba7c9;
+  --blue-500: #3e6485;
+  --blue-900: #0c1924;
+  --green-300: #88b4a4;
+  --green-500: #4c7567;
+  --green-900: #112019;
+  --amber-300: #d2af7c;
+  --amber-500: #8e6b3f;
+  --amber-900: #21160a;
+  --rose-300: #caa0a6;
+  --rose-500: #805057;
+  --rose-900: #1f1114;
 
   --color-background-primary: var(--gray-900);
   --color-background-secondary: var(--gray-800);
@@ -15,12 +29,69 @@
   --color-text-primary: var(--gray-200);
   --color-text-secondary: var(--gray-300);
   --color-text-tertiary: var(--gray-400);
+  --color-card-border: #2a2f34;
+  --color-card-highlight: #1a232d;
+  --color-status-open-bg: color-mix(in srgb, var(--blue-900) 78%, transparent);
+  --color-status-open-border: color-mix(
+    in srgb,
+    var(--blue-500) 62%,
+    var(--gray-300)
+  );
+  --color-status-open-text: var(--blue-300);
+  --color-status-closed-bg: color-mix(
+    in srgb,
+    var(--rose-900) 80%,
+    transparent
+  );
+  --color-status-closed-border: color-mix(
+    in srgb,
+    var(--rose-500) 58%,
+    var(--gray-300)
+  );
+  --color-status-closed-text: var(--rose-300);
+  --color-block-features-bg: color-mix(
+    in srgb,
+    var(--green-900) 72%,
+    transparent
+  );
+  --color-block-features-border: color-mix(
+    in srgb,
+    var(--green-500) 48%,
+    var(--gray-500)
+  );
+  --color-block-features-heading: var(--green-300);
+  --color-block-roadmap-bg: color-mix(
+    in srgb,
+    var(--amber-900) 74%,
+    transparent
+  );
+  --color-block-roadmap-border: color-mix(
+    in srgb,
+    var(--amber-500) 50%,
+    var(--gray-500)
+  );
+  --color-block-roadmap-heading: var(--amber-300);
+  --color-block-tech-bg: color-mix(in srgb, var(--blue-900) 70%, transparent);
+  --color-block-tech-border: color-mix(
+    in srgb,
+    var(--blue-500) 45%,
+    var(--gray-500)
+  );
+  --color-block-tech-heading: var(--blue-300);
+  --font-base: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --font-project-body: "Manrope", "IBM Plex Sans", "Segoe UI", sans-serif;
+  --font-project-copy: "IBM Plex Mono", "SFMono-Regular", "Consolas", monospace;
+  --font-project-heading:
+    "Space Grotesk",
+    "Avenir Next",
+    "Segoe UI",
+    sans-serif;
 }
 
 html {
   background: var(--color-background-primary);
   color: var(--color-text-primary);
-  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  font-family: var(--font-base);
 }
 
 body {
@@ -75,6 +146,18 @@ a {
   display: grid;
   gap: 1.2rem;
   justify-items: center;
+}
+
+.home-hero .site-nav,
+.home-hero .intro h1,
+.home-hero .intro .subtitle,
+.home-hero .intro .intro-header > div {
+  font-family: var(--font-project-body);
+}
+
+.home-hero .intro p {
+  font-family: var(--font-project-body);
+  line-height: 1.62;
 }
 
 .home-page .site-nav {
@@ -176,7 +259,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: stretch;
+  align-items: flex-start;
   gap: 1.25rem;
 }
 
@@ -196,24 +279,34 @@ a {
   flex: 0 1 calc((100% - 1.25rem) / 2);
   min-width: 350px;
   max-width: calc((100% - 1.25rem) / 2);
-  display: flex;
+  display: block;
 }
 
 .project-card {
   align-content: start;
-  flex: 1 1 auto;
-  border: 1px solid var(--color-background-tertiary);
-  background: var(--color-background-secondary);
+  height: fit-content;
+  border: 1px solid var(--color-card-border);
+  background:
+    radial-gradient(
+      130% 90% at 100% 0%,
+      color-mix(in srgb, var(--color-card-highlight) 42%, transparent) 0%,
+      transparent 52%
+    ),
+    var(--color-background-secondary);
   border-radius: 14px;
   padding: 1rem;
   display: grid;
   gap: 0.95rem;
+  font-family: var(--font-project-body);
 
   h4 {
-    color: var(--color-text-secondary);
-    font-size: 1.25rem;
-    margin: 0.5rem 0;
-    text-align: center;
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    margin: 0;
+    letter-spacing: 0.01em;
+    font-family: var(--font-project-heading);
+    font-weight: 650;
+    line-height: 1.2;
   }
 }
 
@@ -229,7 +322,9 @@ a {
   margin: 0;
   font-size: 1.1rem;
   color: var(--color-text-primary);
-  font-weight: 600;
+  font-family: var(--font-project-heading);
+  font-weight: 650;
+  line-height: 1.15;
 }
 
 .project-status {
@@ -238,17 +333,22 @@ a {
   padding: 0.14rem 0.62rem;
   border: 1px solid var(--color-background-tertiary);
   color: var(--color-text-primary);
-  letter-spacing: 0.01em;
+  font-family: var(--font-project-heading);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 .status-open {
-  border-color: var(--gray-500);
-  color: var(--gray-200);
+  background: var(--color-status-open-bg);
+  border-color: var(--color-status-open-border);
+  color: var(--color-status-open-text);
 }
 
 .status-closed {
-  border-color: var(--gray-700);
-  color: var(--gray-300);
+  background: var(--color-status-closed-bg);
+  border-color: var(--color-status-closed-border);
+  color: var(--color-status-closed-text);
 }
 
 .project-video {
@@ -260,17 +360,26 @@ a {
   display: grid;
   place-items: center;
   font-size: 0.9rem;
+  font-family: var(--font-project-heading);
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .project-description {
   text-indent: 0.5rem;
   margin: 0;
   color: var(--color-text-secondary);
+  font-family: var(--font-project-copy);
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 .project-block {
   display: grid;
   gap: 0.45rem;
+  border: 1px solid var(--color-background-tertiary);
+  /* border-radius: 10px; */
+  padding: 0.7rem 0.8rem 0.8rem;
 }
 
 .project-subblock {
@@ -278,14 +387,37 @@ a {
   flex-direction: column;
 }
 
-.project-tech-stack {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 1rem;
-  row-gap: 0.6rem;
+.project-block-features {
+  background: var(--color-block-features-bg);
+  border-color: var(--color-block-features-border);
 }
 
-.project-tech-stack h4 {
-  grid-column: 1 / -1;
+.project-block-roadmap {
+  background: var(--color-block-roadmap-bg);
+  border-color: var(--color-block-roadmap-border);
+}
+
+.project-block-tech {
+  background: var(--color-block-tech-bg);
+  border-color: var(--color-block-tech-border);
+}
+
+.project-block-features h4 {
+  color: var(--color-block-features-heading);
+}
+
+.project-block-roadmap h4 {
+  color: var(--color-block-roadmap-heading);
+}
+
+.project-block-tech h4 {
+  color: var(--color-block-tech-heading);
+}
+
+.project-tech-stack {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 0.8rem;
+  row-gap: 0.6rem;
 }
 
 .project-subblock h5 {
@@ -299,11 +431,20 @@ a {
 .project-bullets {
   list-style-position: inside;
   margin: 0;
-  padding-inline: 1rem;
+  padding-inline: 0.8rem 0.2rem;
   display: grid;
-  gap: 0.5rem;
+  gap: 0.45rem;
   color: var(--color-text-secondary);
-  font-size: 0.95rem;
+  font-family: var(--font-project-copy);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.project-tech-stack .project-bullets {
+  font-family: var(--font-project-copy);
+  font-size: 0.9rem;
+  letter-spacing: 0.005em;
+  line-height: 1.45;
 }
 
 @media (max-width: 640px) {
