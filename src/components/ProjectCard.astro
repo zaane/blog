@@ -1,8 +1,13 @@
 ---
+import { YouTube } from "astro-embed";
+
 interface Project {
   name: string;
   status?: "Open Source" | "Closed Source";
   videoLabel?: string;
+  videoUrl?: string;
+  videoTitle?: string;
+  videoPosterQuality?: "max" | "high" | "default" | "low";
   description?: string;
   techStack?: {
     frontend: string[];
@@ -37,13 +42,24 @@ const statusClass =
         </header>
 
         <div class="project-main-content">
-          <div
-            class="project-video"
-            role="img"
-            aria-label={`Video placeholder for ${project.name}`}
-          >
-            {project.videoLabel}
-          </div>
+          {
+            project.videoUrl ? (
+              <YouTube
+                id={project.videoUrl}
+                title={project.videoTitle ?? `${project.name} demo video`}
+                posterQuality={project.videoPosterQuality ?? "high"}
+                class="project-video project-video-embed"
+              />
+            ) : (
+              <div
+                class="project-video project-video-placeholder"
+                role="img"
+                aria-label={`Video placeholder for ${project.name}`}
+              >
+                {project.videoLabel}
+              </div>
+            )
+          }
 
           <p class="project-description">{project.description}</p>
         </div>

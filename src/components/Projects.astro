@@ -5,6 +5,9 @@ interface Project {
   name: string;
   status?: "Open Source" | "Closed Source";
   videoLabel?: string;
+  videoUrl?: string;
+  videoTitle?: string;
+  videoPosterQuality?: "max" | "high" | "default" | "low";
   description?: string;
   techStack?: {
     frontend: string[];
