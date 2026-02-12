@@ -48,7 +48,7 @@ const { sections } = Astro.props as Props;
             section.projects.length > 0 ? (
               <ul class="project-list">
                 {section.projects.map((project) => (
-                  <li class="project-item">
+                  <li class={`project-item ${!project.status ? "project-item-placeholder" : ""}`}>
                     <ProjectCard project={project} />
                   </li>
                 ))}
