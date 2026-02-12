@@ -272,6 +272,10 @@ a {
   max-width: 100%;
 }
 
+.project-item.project-item-placeholder {
+  align-self: center;
+}
+
 .project-coming-soon {
   color: var(--color-text-secondary);
 }
@@ -463,15 +467,16 @@ a {
     align-items: center;
   }
 
-  .project-category-past .project-item.project-item-placeholder {
-    width: 50%;
-    max-width: 50%;
-  }
-
   .project-item {
     width: 100%;
     min-width: 0;
     max-width: 100%;
+  }
+
+  .project-list > .project-item.project-item-placeholder > .project-card {
+    width: 50%;
+    max-width: 50%;
+    margin-inline: auto;
   }
 
   .project-card {
