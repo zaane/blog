@@ -6,4 +6,5 @@ const site = process.env.SITE_URL;
 // https://astro.build/config
 export default defineConfig({
   site: "https://zaane.github.io",
+  base: "/blog"
 });
