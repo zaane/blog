@@ -455,6 +455,7 @@ a {
 
 .project-bullets {
   list-style-position: inside;
+  hyphens: auto;
   margin: 0;
   padding-inline: 0.8rem 0.2rem;
   display: grid;
