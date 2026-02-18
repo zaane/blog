@@ -89,6 +89,13 @@ html {
   background: var(--color-background-primary);
   color: var(--color-text-primary);
   font-family: var(--font-base);
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
