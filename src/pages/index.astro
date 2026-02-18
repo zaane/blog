@@ -4,7 +4,7 @@ import Nav from "../components/Nav.astro";
 import Projects from "../components/Projects.astro";
 import SEO from "../components/SEO.astro";
 import { getCollection } from "astro:content";
-import type { Project, ProjectSectionId } from "../types/projects";
+import type { Project } from "../types/projects";
 
 const pageTitle = "Home | Zane Olds";
 const pageDescription =
@@ -14,75 +14,27 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   : `${import.meta.env.BASE_URL}/`;
 const iconHref = `${basePath}orca.svg`;
 
-const sectionOrder: ProjectSectionId[] = ["current", "past", "guided"];
-
-const sectionMeta: Record<
-  ProjectSectionId,
-  { title: string; description: string }
-> = {
-  current: {
-    title: "Current Projects",
-    description: "",
-  },
-  past: {
-    title: "Past Projects",
-    description:
-      "Things I'm not working on currently, but that I intend to pick back up in the future. Most of them are in a half-stack state, and some have drafts of blog write-ups that I want to finish so I can share my thoughts and working process.",
-  },
-  guided: {
-    title: "Courses and Guided Projects",
-    description:
-      "Guided builds and courses I completed to develop specific skills or to learn about the inner workings of tools I use every day. This is not a comprehensive list of materials I've learned from, but rather a curation of those that have had the most impact on me and that I feel confident recommending to others looking to learn the same topics or skills.",
-  },
-};
-
-const projectsByCategory: Record<
-  ProjectSectionId,
-  Array<{ order: number; project: Project }>
-> = {
-  current: [],
-  past: [],
-  guided: [],
-};
-
-const parseCategory = (entryId: string): ProjectSectionId | null => {
-  const [category] = entryId.split("/");
-
-  if (category === "current" || category === "past" || category === "guided") {
-    return category;
-  }
-
-  return null;
-};
+const currentProjectRows: Array<{ order: number; project: Project }> = [];
 
 const projectEntries = await getCollection("projects");
 
 for (const entry of projectEntries) {
-  const category = parseCategory(entry.id);
-
-  if (!category) {
+  const [category] = entry.id.split("/");
+  if (category !== "current") {
     continue;
   }
 
   const { order, ...project } = entry.data;
-  projectsByCategory[category].push({
+  currentProjectRows.push({
     order: order ?? Number.MAX_SAFE_INTEGER,
     project,
   });
 }
 
-for (const category of sectionOrder) {
-  projectsByCategory[category].sort(
-    (a, b) => a.order - b.order || a.project.name.localeCompare(b.project.name),
-  );
-}
-
-const projectSections = sectionOrder.map((id) => ({
-  id,
-  title: sectionMeta[id].title,
-  description: sectionMeta[id].description,
-  projects: projectsByCategory[id].map(({ project }) => project),
-}));
+currentProjectRows.sort(
+  (a, b) => a.order - b.order || a.project.name.localeCompare(b.project.name),
+);
+const currentProjects = currentProjectRows.map(({ project }) => project);
 ---
 
 <html lang="en">
@@ -128,7 +80,7 @@ const projectSections = sectionOrder.map((id) => ({
         </header>
       </div>
 
-      <Projects sections={projectSections} />
+      <Projects projects={currentProjects} />
     </main>
   </body>
 </html>

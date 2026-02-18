@@ -1,13 +1,12 @@
 ---
 import ProjectCard from "./ProjectCard.astro";
-import type { Project, ProjectSection } from "../types/projects";
+import type { Project } from "../types/projects";
 
 interface Props {
-  sections: ProjectSection[];
-  heading?: string;
+  projects: Project[];
 }
 
-const { sections } = Astro.props as Props;
+const { projects } = Astro.props as Props;
 const isPlaceholderProject = (project: Project) =>
   !project.videoUrl &&
   !project.videoLabel &&
@@ -25,43 +24,24 @@ const isPlaceholderProject = (project: Project) =>
 ---
 
 <section aria-labelledby="projects-heading" class="section projects-section">
-  <div class="project-categories">
-    {
-      sections.map((section) => (
-        <section
-          class={`project-category project-category-${section.id}`}
-          aria-labelledby={`projects-${section.id}`}
-        >
-          <header class="project-category-head">
-            <h3 id={`projects-${section.id}`} class="project-category-title">
-              {section.title}
-            </h3>
-            {
-              section.description ? (
-                <p class="project-category-description">{section.description}</p>
-              ) : null
-            }
-          </header>
-
-          {
-            section.projects.length > 0 ? (
-              <ul class="project-list">
-                {section.projects.map((project) => (
-                  <li
-                    class={`project-item ${isPlaceholderProject(project) ? "project-item-placeholder" : ""}`}
-                  >
-                    <ProjectCard project={project} />
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <div class="project-coming-soon" role="status">
-                Coming soon.
-              </div>
-            )
-          }
-        </section>
-      ))
-    }
-  </div>
+  <header class="projects-section-head">
+    <h3 id="projects-heading" class="projects-section-title">Current Projects</h3>
+  </header>
+  {
+    projects.length > 0 ? (
+      <ul class="project-list">
+        {projects.map((project) => (
+          <li
+            class={`project-item ${isPlaceholderProject(project) ? "project-item-placeholder" : ""}`}
+          >
+            <ProjectCard project={project} />
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <div class="project-coming-soon" role="status">
+        Coming soon.
+      </div>
+    )
+  }
 </section>
