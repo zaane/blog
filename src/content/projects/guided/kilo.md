@@ -1,5 +1,5 @@
 ---
-name: Fullstack Open
+name: Kilo text editor
 order: 1
 whatItIs: |-
   This is a guide on building a text editor in C, based on [antirez's](https://en.wikipedia.org/wiki/Salvatore_Sanfilippo) [kilo](https://github.com/antirez/kilo). The code comes in at about 1000 lines and writing it is broken into 184 steps. The build is truly from scratch, with no external dependencies - you use the termios API and raw VT100 escape sequences to manage user input and create the terminal user interface.
@@ -17,7 +17,7 @@ otherNotes: |-
   His [Corso di programmazione in C](https://www.youtube.com/watch?v=HjXBXBgfKyk&list=PLrEMgOSrS_3cFJpM2gdw8EGFyRBZOyAKY&pp=0gcJCbUEOCosWNin) is also a masterclass introduction, not only to the C language, but also to the theory of computation and how to design and think about programs.
 
   The discovery of Salvatore and his channel has been truly transformative for me in my development as a programmer, as a student of Italian, and as a human being in general.
-imageUrl: /images/kilo.png
+image: ../../../images/kilo.png
 imageAlt: Kilo screenshot
 externalUrl: https://viewsourcecode.org/snaptoken/kilo/
 externalLabel: Build your own text editor

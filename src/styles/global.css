@@ -344,6 +344,18 @@ a {
   text-transform: uppercase;
 }
 
+.project-header-link {
+  font-size: 1.6rem;
+  color: var(--color-text-primary);
+  font-family: var(--font-project-heading);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16rem;
+  text-transform: lowercase;
+  margin-right: 1.25rem;
+}
+
 .status-open {
   background: var(--color-status-open-bg);
   border-color: var(--color-status-open-border);
@@ -365,8 +377,14 @@ a {
 
 .project-image {
   display: block;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 26rem;
+  margin-inline: auto;
+  object-fit: contain;
+  border: 1px solid var(--color-background-tertiary);
+  border-radius: 10px;
   background: var(--color-background-primary);
 }
 
@@ -555,6 +573,30 @@ a {
     align-items: start;
   }
 
+  .project-card.project-card-has-image {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-card.project-card-has-image
+    .project-main-content.project-main-content-image-fit {
+    align-self: stretch;
+    min-height: 0;
+    position: relative;
+    display: block;
+  }
+
+  .project-card.project-card-has-image
+    .project-main-content.project-main-content-image-fit
+    .project-image {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+  }
+
   .project-card-head {
     grid-area: head;
   }
@@ -662,6 +704,11 @@ a {
   .project-name {
     margin: 0;
     font-size: 1.2rem;
+  }
+
+  .project-header-link {
+    font-size: 1.2rem;
+    margin-right: 0;
   }
 
   .project-description {

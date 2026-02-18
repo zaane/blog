@@ -17,7 +17,10 @@ const hasGuidedWhatItIs = Boolean(project.whatItIs);
 const hasGuidedLearned = Boolean(project.whatILearned);
 const hasGuidedNotes = Boolean(project.otherNotes);
 const isGuidedEntry = hasGuidedWhatItIs || hasGuidedLearned || hasGuidedNotes;
-const hasMedia = Boolean(project.videoUrl || project.imageUrl || project.videoLabel);
+const imageSrc = project.image?.src ?? project.imageUrl;
+const showsImage = Boolean(!project.videoUrl && imageSrc);
+const shouldFitImageToRow = Boolean(showsImage && !project.description);
+const hasMedia = Boolean(project.videoUrl || imageSrc || project.videoLabel);
 const hasMainText = Boolean(project.description || project.externalUrl);
 const isComingSoon =
   !hasMedia &&
@@ -28,13 +31,14 @@ const isComingSoon =
   !isGuidedEntry;
 const statusClass =
   project.status === "Open Source" ? "status-open" : "status-closed";
+const showHeaderExternalLink = Boolean(project.externalUrl && isGuidedEntry);
 const descriptionHtml = await renderMarkdown(project.description);
 const whatItIsHtml = await renderMarkdown(project.whatItIs);
 const whatILearnedHtml = await renderMarkdown(project.whatILearned);
 const otherNotesHtml = await renderMarkdown(project.otherNotes);
 ---
 
-<article class={`project-card ${isComingSoon ? "coming-soon" : ""}`}>
+<article class={`project-card ${showsImage ? "project-card-has-image" : ""} ${isComingSoon ? "coming-soon" : ""}`}>
   {
     isComingSoon ? (
       <>
@@ -46,7 +50,16 @@ const otherNotesHtml = await renderMarkdown(project.otherNotes);
         <header class="project-card-head">
           <h3 class="project-name">{project.name}</h3>
           {
-            project.status ? (
+            showHeaderExternalLink ? (
+              <a
+                href={project.externalUrl}
+                class="project-header-link"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                link ↗
+              </a>
+            ) : project.status ? (
               <span class={`project-status ${statusClass}`}>{project.status}</span>
             ) : null
           }
@@ -54,7 +67,9 @@ const otherNotesHtml = await renderMarkdown(project.otherNotes);
 
         {
           hasMedia || hasMainText ? (
-            <div class="project-main-content">
+            <div
+              class={`project-main-content ${shouldFitImageToRow ? "project-main-content-image-fit" : ""}`}
+            >
               {
                 project.videoUrl ? (
                   <YouTube
@@ -63,11 +78,13 @@ const otherNotesHtml = await renderMarkdown(project.otherNotes);
                     posterQuality={project.videoPosterQuality ?? "high"}
                     class="project-video project-video-embed"
                   />
-                ) : project.imageUrl ? (
+                ) : imageSrc ? (
                   <img
-                    src={project.imageUrl}
+                    src={imageSrc}
                     alt={project.imageAlt ?? `${project.name} preview image`}
-                    class="project-video project-image"
+                    width={project.image?.width}
+                    height={project.image?.height}
+                    class="project-image"
                     loading="lazy"
                   />
                 ) : project.videoLabel ? (
@@ -88,7 +105,7 @@ const otherNotesHtml = await renderMarkdown(project.otherNotes);
               }
 
               {
-                project.externalUrl ? (
+                project.externalUrl && !showHeaderExternalLink ? (
                   <a
                     href={project.externalUrl}
                     class="project-external-link"
