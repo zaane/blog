@@ -28,8 +28,6 @@ const isComingSoon =
   !hasRoadmap &&
   !hasTechStack &&
   !isGuidedEntry;
-const statusClass =
-  project.status === "Open Source" ? "status-open" : "status-closed";
 const showHeaderExternalLink = Boolean(project.externalUrl && isGuidedEntry);
 const descriptionHtml = await renderMarkdown(project.description);
 const whatItIsHtml = await renderMarkdown(project.whatItIs);
@@ -60,8 +58,6 @@ const otherNotesHtml = await renderMarkdown(project.otherNotes);
               >
                 link ↗
               </a>
-            ) : project.status ? (
-              <span class={`project-status ${statusClass}`}>{project.status}</span>
             ) : null
           }
         </header>
