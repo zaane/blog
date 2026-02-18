@@ -8,6 +8,10 @@ interface Project {
   videoUrl?: string;
   videoTitle?: string;
   videoPosterQuality?: "max" | "high" | "default" | "low";
+  imageUrl?: string;
+  imageAlt?: string;
+  externalUrl?: string;
+  externalLabel?: string;
   description?: string;
   techStack?: {
     frontend: string[];
@@ -15,6 +19,9 @@ interface Project {
   };
   currentFeatures?: string[];
   nextSteps?: string[];
+  whatItIs?: string;
+  whatILearned?: string;
+  otherNotes?: string;
 }
 
 interface ProjectSection {
@@ -30,6 +37,19 @@ interface Props {
 }
 
 const { sections } = Astro.props as Props;
+const isPlaceholderProject = (project: Project) =>
+  !project.videoUrl &&
+  !project.videoLabel &&
+  !project.imageUrl &&
+  !project.externalUrl &&
+  !project.description &&
+  (project.currentFeatures?.length ?? 0) === 0 &&
+  (project.nextSteps?.length ?? 0) === 0 &&
+  (project.techStack?.frontend?.length ?? 0) === 0 &&
+  (project.techStack?.backend?.length ?? 0) === 0 &&
+  !project.whatItIs &&
+  !project.whatILearned &&
+  !project.otherNotes;
 ---
 
 <section aria-labelledby="projects-heading" class="section projects-section">
@@ -51,7 +71,9 @@ const { sections } = Astro.props as Props;
             section.projects.length > 0 ? (
               <ul class="project-list">
                 {section.projects.map((project) => (
-                  <li class={`project-item ${!project.status ? "project-item-placeholder" : ""}`}>
+                  <li
+                    class={`project-item ${isPlaceholderProject(project) ? "project-item-placeholder" : ""}`}
+                  >
                     <ProjectCard project={project} />
                   </li>
                 ))}

@@ -8,6 +8,10 @@ interface Project {
   videoUrl?: string;
   videoTitle?: string;
   videoPosterQuality?: "max" | "high" | "default" | "low";
+  imageUrl?: string;
+  imageAlt?: string;
+  externalUrl?: string;
+  externalLabel?: string;
   description?: string;
   techStack?: {
     frontend: string[];
@@ -15,6 +19,9 @@ interface Project {
   };
   currentFeatures?: string[];
   nextSteps?: string[];
+  whatItIs?: string;
+  whatILearned?: string;
+  otherNotes?: string;
 }
 
 interface Props {
@@ -22,7 +29,24 @@ interface Props {
 }
 
 const { project } = Astro.props as Props;
-const isComingSoon = !project.status;
+const hasFeatures = (project.currentFeatures?.length ?? 0) > 0;
+const hasRoadmap = (project.nextSteps?.length ?? 0) > 0;
+const hasFrontendTools = (project.techStack?.frontend?.length ?? 0) > 0;
+const hasBackendTools = (project.techStack?.backend?.length ?? 0) > 0;
+const hasTechStack = hasFrontendTools || hasBackendTools;
+const hasGuidedWhatItIs = Boolean(project.whatItIs);
+const hasGuidedLearned = Boolean(project.whatILearned);
+const hasGuidedNotes = Boolean(project.otherNotes);
+const isGuidedEntry = hasGuidedWhatItIs || hasGuidedLearned || hasGuidedNotes;
+const hasMedia = Boolean(project.videoUrl || project.imageUrl || project.videoLabel);
+const hasMainText = Boolean(project.description || project.externalUrl);
+const isComingSoon =
+  !hasMedia &&
+  !hasMainText &&
+  !hasFeatures &&
+  !hasRoadmap &&
+  !hasTechStack &&
+  !isGuidedEntry;
 const statusClass =
   project.status === "Open Source" ? "status-open" : "status-closed";
 ---
@@ -38,60 +62,139 @@ const statusClass =
       <>
         <header class="project-card-head">
           <h3 class="project-name">{project.name}</h3>
-          <span class={`project-status ${statusClass}`}>{project.status}</span>
+          {
+            project.status ? (
+              <span class={`project-status ${statusClass}`}>{project.status}</span>
+            ) : null
+          }
         </header>
 
-        <div class="project-main-content">
-          {
-            project.videoUrl ? (
-              <YouTube
-                id={project.videoUrl}
-                title={project.videoTitle ?? `${project.name} demo video`}
-                posterQuality={project.videoPosterQuality ?? "high"}
-                class="project-video project-video-embed"
-              />
-            ) : (
-              <div
-                class="project-video project-video-placeholder"
-                role="img"
-                aria-label={`Video placeholder for ${project.name}`}
-              >
-                {project.videoLabel}
-              </div>
-            )
-          }
+        {
+          hasMedia || hasMainText ? (
+            <div class="project-main-content">
+              {
+                project.videoUrl ? (
+                  <YouTube
+                    id={project.videoUrl}
+                    title={project.videoTitle ?? `${project.name} demo video`}
+                    posterQuality={project.videoPosterQuality ?? "high"}
+                    class="project-video project-video-embed"
+                  />
+                ) : project.imageUrl ? (
+                  <img
+                    src={project.imageUrl}
+                    alt={project.imageAlt ?? `${project.name} preview image`}
+                    class="project-video project-image"
+                    loading="lazy"
+                  />
+                ) : project.videoLabel ? (
+                  <div
+                    class="project-video project-video-placeholder"
+                    role="img"
+                    aria-label={`Media placeholder for ${project.name}`}
+                  >
+                    {project.videoLabel}
+                  </div>
+                ) : null
+              }
 
-          <p class="project-description">{project.description}</p>
-        </div>
+              {
+                project.description ? (
+                  <p class="project-description">{project.description}</p>
+                ) : null
+              }
 
-        <section class="project-block project-block-features">
-          <h4>Features</h4>
-          <ul class="project-bullets">
-            {(project.currentFeatures ?? []).map((feature) => <li>{feature}</li>)}
-          </ul>
-        </section>
+              {
+                project.externalUrl ? (
+                  <a
+                    href={project.externalUrl}
+                    class="project-external-link"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    {project.externalLabel ?? "Visit course/project site"}
+                  </a>
+                ) : null
+              }
+            </div>
+          ) : null
+        }
 
-        <section class="project-block project-block-roadmap">
-          <h4>Roadmap</h4>
-          <ul class="project-bullets">
-            {(project.nextSteps ?? []).map((step) => <li>{step}</li>)}
-          </ul>
-        </section>
+        {
+          !isGuidedEntry && hasFeatures ? (
+            <section class="project-block project-block-features">
+              <h4>Features</h4>
+              <ul class="project-bullets">
+                {(project.currentFeatures ?? []).map((feature) => <li>{feature}</li>)}
+              </ul>
+            </section>
+          ) : null
+        }
 
-        <section class="project-block project-block-tech project-tech-stack">
-          <section class="project-subblock project-subblock-frontend">
-            <h4>Frontend</h4>
-            <ul class="project-bullets">
-              {(project.techStack?.frontend ?? []).map((tool) => <li>{tool}</li>)}
-            </ul>
-          </section>
-          <section class="project-subblock project-subblock-backend">
-            <h4>Backend</h4>
-            <ul class="project-bullets">
-              {(project.techStack?.backend ?? []).map((tool) => <li>{tool}</li>)}
-            </ul>
-          </section>
-        </section>
+        {
+          !isGuidedEntry && hasRoadmap ? (
+            <section class="project-block project-block-roadmap">
+              <h4>Roadmap</h4>
+              <ul class="project-bullets">
+                {(project.nextSteps ?? []).map((step) => <li>{step}</li>)}
+              </ul>
+            </section>
+          ) : null
+        }
+
+        {
+          !isGuidedEntry && hasTechStack ? (
+            <section class="project-block project-block-tech project-tech-stack">
+              {
+                hasFrontendTools ? (
+                  <section class="project-subblock project-subblock-frontend">
+                    <h4>Frontend</h4>
+                    <ul class="project-bullets">
+                      {(project.techStack?.frontend ?? []).map((tool) => <li>{tool}</li>)}
+                    </ul>
+                  </section>
+                ) : null
+              }
+              {
+                hasBackendTools ? (
+                  <section class="project-subblock project-subblock-backend">
+                    <h4>Backend</h4>
+                    <ul class="project-bullets">
+                      {(project.techStack?.backend ?? []).map((tool) => <li>{tool}</li>)}
+                    </ul>
+                  </section>
+                ) : null
+              }
+            </section>
+          ) : null
+        }
+
+        {
+          isGuidedEntry && hasGuidedWhatItIs ? (
+            <section class="project-block project-block-features">
+              <h4>What it is</h4>
+              <p class="project-paragraph">{project.whatItIs}</p>
+            </section>
+          ) : null
+        }
+
+        {
+          isGuidedEntry && hasGuidedLearned ? (
+            <section class="project-block project-block-roadmap">
+              <h4>What I learned</h4>
+              <p class="project-paragraph">{project.whatILearned}</p>
+            </section>
+          ) : null
+        }
+
+        {
+          isGuidedEntry && hasGuidedNotes ? (
+            <section class="project-block project-block-tech">
+              <h4>Other notes</h4>
+              <p class="project-paragraph">{project.otherNotes}</p>
+            </section>
+          ) : null
+        }
       </>
     )
   }
