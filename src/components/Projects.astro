@@ -1,35 +1,6 @@
 ---
 import ProjectCard from "./ProjectCard.astro";
-
-interface Project {
-  name: string;
-  status?: "Open Source" | "Closed Source";
-  videoLabel?: string;
-  videoUrl?: string;
-  videoTitle?: string;
-  videoPosterQuality?: "max" | "high" | "default" | "low";
-  imageUrl?: string;
-  imageAlt?: string;
-  externalUrl?: string;
-  externalLabel?: string;
-  description?: string;
-  techStack?: {
-    frontend: string[];
-    backend: string[];
-  };
-  currentFeatures?: string[];
-  nextSteps?: string[];
-  whatItIs?: string;
-  whatILearned?: string;
-  otherNotes?: string;
-}
-
-interface ProjectSection {
-  id: string;
-  title: string;
-  description: string;
-  projects: Project[];
-}
+import type { Project, ProjectSection } from "../types/projects";
 
 interface Props {
   sections: ProjectSection[];

@@ -3,6 +3,8 @@ import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import Projects from "../components/Projects.astro";
 import SEO from "../components/SEO.astro";
+import { getCollection } from "astro:content";
+import type { Project, ProjectSectionId } from "../types/projects";
 
 const pageTitle = "Zane Olds | Portfolio";
 const pageDescription =
@@ -12,111 +14,75 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   : `${import.meta.env.BASE_URL}/`;
 const iconHref = `${basePath}orca.svg`;
 
-const projectSections = [
-  {
-    id: "current",
+const sectionOrder: ProjectSectionId[] = ["current", "past", "guided"];
+
+const sectionMeta: Record<
+  ProjectSectionId,
+  { title: string; description: string }
+> = {
+  current: {
     title: "Current Projects",
     description: "These full-stack projects are my primary focus right now.",
-    projects: [
-      {
-        name: "Leggera",
-        status: "Closed Source",
-        videoUrl: "https://www.youtube.com/watch?v=PIuiSjJ9gbY",
-        videoTitle: "leggera demo",
-        videoLabel: "Demo video placeholder",
-        description:
-          "A platform for tracking and learning foreign language vocabulary through immersion: learn while reading books and content on the web, and watching videos, shows, and movies.",
-        techStack: {
-          frontend: [
-            "React, Typescript with React Router and Tanstack Query",
-            "Custom CSS design system and responsive design",
-          ],
-          backend: [
-            "Python, FastAPI",
-            "Multi-lingual natural language processing with spaCy",
-            ".epub and YouTube data scraping and parsing",
-            "Service repository design with dependency injection of database connection and machine learning models",
-          ],
-        },
-        currentFeatures: [
-          "Read ebooks and watch Youtube videos with inline vocabulary lookup. Dictionary stored locally for 0 latency and offline availability.",
-          "See new words visibly highlighted before reading, allowing pre-studying to enhance immersion.",
-          "Mark words as known or learning, and create + export flashcards to Anki for spaced repetition studying.",
-          "Query LLMs to help understand words in context and add information to flashcards.",
-        ],
-        nextSteps: [
-          "Create dashboard views so the user can view their vocabulary progress and gauge their readiness for new content.",
-          "Integrate word tracking into YouTube viewer to faciliate learning from video content. Use official YouTube API to let users log in and access playlists.",
-          "Enhance ebook parsing to be more robust in the face of varied ebook formats.",
-          "Create a browser extension to allow importing arbitrary content from the web.",
-        ],
-      },
-      {
-        name: "(Not!) Spelling Bee",
-        status: "Closed Source",
-        videoUrl: "https://www.youtube.com/watch?v=kx65TfhkKL4",
-        videoTitle: "(Not) Spelling Bee demo",
-        videoLabel: "Demo video placeholder",
-        description:
-          "A clone of the popular word game from the New York Times, but for languages other than English.",
-        techStack: {
-          frontend: [
-            "React, Typescript with React Router and TanStack Query",
-            "Faithful recreation of the original game with language-specific UI adjustments.",
-          ],
-          backend: [
-            "Python, FastAPI",
-            "Prefix tree data structure for efficient processing and retrieval of game data",
-          ],
-        },
-        currentFeatures: [
-          "Play Spelling Bee in Italian!",
-          "Use modified input controls to allow inputting of accented characters.",
-          "Easily click through found words to see definitions from wiktionary",
-          "Admin dashboard for curation and scheduling of games and editing game data to fine tune word lists.",
-        ],
-        nextSteps: [
-          "Set up user authentication and role-based access.",
-          "Add Spanish and English support, with other languages down the line.",
-          "Integrate with leggera backend, tie in with language learning features.",
-        ],
-      },
-      { name: "Wiktionary Database/API" },
-    ],
   },
-  {
-    id: "past",
+  past: {
     title: "Past Projects",
     description:
       "Things I'm not working on currently, but that I either finished or plan to pick back up in the future. I intend to share more details about these and also write in depth about some of them later.",
-    projects: [
-      { name: "Grocery receipt tracker" },
-      { name: "Italian grammar construct generator" },
-      { name: "Math practice problem generator" },
-      { name: "Statistics concept visualizer" },
-      { name: "Smart light controller webapp" },
-    ],
   },
-  {
-    id: "guided",
+  guided: {
     title: "Courses and Guided Projects",
     description:
       "Structured builds, courses, and curriculum-driven projects completed to develop specific skills or to learn more about the tools I use every day.",
-    projects: [
-      {
-        name: "Fullstack Open",
-        whatItIs: "A project-based full-stack web development course.",
-        whatILearned:
-          "Built React + Node apps and learned API/client architecture.",
-        otherNotes: "Great pacing; strong testing modules.",
-        imageUrl: "/images/fullstack-open.png",
-        imageAlt: "Fullstack Open project screenshot",
-        externalUrl: "https://fullstackopen.com/en/",
-        externalLabel: "Course website",
-      },
-    ],
   },
-];
+};
+
+const projectsByCategory: Record<
+  ProjectSectionId,
+  Array<{ order: number; project: Project }>
+> = {
+  current: [],
+  past: [],
+  guided: [],
+};
+
+const parseCategory = (entryId: string): ProjectSectionId | null => {
+  const [category] = entryId.split("/");
+
+  if (category === "current" || category === "past" || category === "guided") {
+    return category;
+  }
+
+  return null;
+};
+
+const projectEntries = await getCollection("projects");
+
+for (const entry of projectEntries) {
+  const category = parseCategory(entry.id);
+
+  if (!category) {
+    continue;
+  }
+
+  const { order, ...project } = entry.data;
+  projectsByCategory[category].push({
+    order: order ?? Number.MAX_SAFE_INTEGER,
+    project,
+  });
+}
+
+for (const category of sectionOrder) {
+  projectsByCategory[category].sort(
+    (a, b) => a.order - b.order || a.project.name.localeCompare(b.project.name),
+  );
+}
+
+const projectSections = sectionOrder.map((id) => ({
+  id,
+  title: sectionMeta[id].title,
+  description: sectionMeta[id].description,
+  projects: projectsByCategory[id].map(({ project }) => project),
+}));
 ---
 
 <html lang="en">

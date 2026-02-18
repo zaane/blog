@@ -405,6 +405,19 @@ a {
   line-height: 1.6;
 }
 
+.project-description :where(p) {
+  margin: 0 0 0.6rem;
+}
+
+.project-description :where(p:last-child) {
+  margin-bottom: 0;
+}
+
+.project-description :where(ul, ol) {
+  margin: 0 0 0.6rem;
+  padding-inline-start: 1.25rem;
+}
+
 .project-external-link {
   width: fit-content;
   color: var(--color-text-primary);
@@ -421,6 +434,19 @@ a {
   font-size: 0.9rem;
   line-height: 1.55;
   text-align: left;
+}
+
+.project-paragraph :where(p) {
+  margin: 0 0 0.6rem;
+}
+
+.project-paragraph :where(p:last-child) {
+  margin-bottom: 0;
+}
+
+.project-paragraph :where(ul, ol) {
+  margin: 0 0 0.6rem;
+  padding-inline-start: 1.25rem;
 }
 
 .project-block {

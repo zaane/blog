@@ -1,28 +1,7 @@
 ---
 import { YouTube } from "astro-embed";
-
-interface Project {
-  name: string;
-  status?: "Open Source" | "Closed Source";
-  videoLabel?: string;
-  videoUrl?: string;
-  videoTitle?: string;
-  videoPosterQuality?: "max" | "high" | "default" | "low";
-  imageUrl?: string;
-  imageAlt?: string;
-  externalUrl?: string;
-  externalLabel?: string;
-  description?: string;
-  techStack?: {
-    frontend: string[];
-    backend: string[];
-  };
-  currentFeatures?: string[];
-  nextSteps?: string[];
-  whatItIs?: string;
-  whatILearned?: string;
-  otherNotes?: string;
-}
+import type { Project } from "../types/projects";
+import { renderMarkdown } from "../lib/markdown";
 
 interface Props {
   project: Project;
@@ -49,6 +28,10 @@ const isComingSoon =
   !isGuidedEntry;
 const statusClass =
   project.status === "Open Source" ? "status-open" : "status-closed";
+const descriptionHtml = await renderMarkdown(project.description);
+const whatItIsHtml = await renderMarkdown(project.whatItIs);
+const whatILearnedHtml = await renderMarkdown(project.whatILearned);
+const otherNotesHtml = await renderMarkdown(project.otherNotes);
 ---
 
 <article class={`project-card ${isComingSoon ? "coming-soon" : ""}`}>
@@ -100,7 +83,7 @@ const statusClass =
 
               {
                 project.description ? (
-                  <p class="project-description">{project.description}</p>
+                  <div class="project-description" set:html={descriptionHtml} />
                 ) : null
               }
 
@@ -173,7 +156,7 @@ const statusClass =
           isGuidedEntry && hasGuidedWhatItIs ? (
             <section class="project-block project-block-features">
               <h4>What it is</h4>
-              <p class="project-paragraph">{project.whatItIs}</p>
+              <div class="project-paragraph" set:html={whatItIsHtml} />
             </section>
           ) : null
         }
@@ -182,7 +165,7 @@ const statusClass =
           isGuidedEntry && hasGuidedLearned ? (
             <section class="project-block project-block-roadmap project-block-guided-learned">
               <h4>What I learned</h4>
-              <p class="project-paragraph">{project.whatILearned}</p>
+              <div class="project-paragraph" set:html={whatILearnedHtml} />
             </section>
           ) : null
         }
@@ -191,7 +174,7 @@ const statusClass =
           isGuidedEntry && hasGuidedNotes ? (
             <section class="project-block project-block-tech project-block-guided-notes">
               <h4>Other notes</h4>
-              <p class="project-paragraph">{project.otherNotes}</p>
+              <div class="project-paragraph" set:html={otherNotesHtml} />
             </section>
           ) : null
         }
