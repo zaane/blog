@@ -1,12 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
 
 :root {
-  --gray-100: #f5f5f5;
   --gray-200: #e5e5e5;
   --gray-300: #d4d4d4;
   --gray-400: #b0b0b0;
   --gray-500: #8c8c8c;
-  --gray-600: #666666;
   --gray-700: #3f3f3f;
   --gray-800: #101010;
   --gray-900: #000000;
@@ -19,9 +17,6 @@
   --amber-300: #d2af7c;
   --amber-500: #8e6b3f;
   --amber-900: #21160a;
-  --rose-300: #caa0a6;
-  --rose-500: #805057;
-  --rose-900: #1f1114;
 
   --color-background-primary: var(--gray-900);
   --color-background-secondary: var(--gray-800);
@@ -31,24 +26,6 @@
   --color-text-tertiary: var(--gray-400);
   --color-card-border: #2a2f34;
   --color-card-highlight: #1a232d;
-  --color-status-open-bg: color-mix(in srgb, var(--blue-900) 78%, transparent);
-  --color-status-open-border: color-mix(
-    in srgb,
-    var(--blue-500) 62%,
-    var(--gray-300)
-  );
-  --color-status-open-text: var(--blue-300);
-  --color-status-closed-bg: color-mix(
-    in srgb,
-    var(--rose-900) 80%,
-    transparent
-  );
-  --color-status-closed-border: color-mix(
-    in srgb,
-    var(--rose-500) 58%,
-    var(--gray-300)
-  );
-  --color-status-closed-text: var(--rose-300);
   --color-block-features-bg: color-mix(
     in srgb,
     var(--green-900) 72%,
@@ -90,6 +67,7 @@ html {
   color: var(--color-text-primary);
   font-family: var(--font-base);
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -99,16 +77,11 @@ html {
 }
 
 body {
-  margin: 0 auto;
+  margin: 0;
   width: 100%;
-  max-width: 78ch;
-  padding: 2rem 1.25rem 3rem;
-  line-height: 1.55;
-}
-
-body.home-page {
   max-width: none;
   padding: 2rem clamp(1rem, 3vw, 2.5rem) 3rem;
+  line-height: 1.55;
 }
 
 * {
@@ -139,20 +112,23 @@ a {
   gap: 2rem;
 }
 
+.page-shell {
+  width: min(78ch, 100%);
+  margin: 0 auto;
+}
+
 .home-layout {
   min-height: 100vh;
   gap: 2.5rem;
 }
 
 .home-hero {
-  width: min(78ch, 100%);
-  margin: 0 auto;
   display: grid;
   gap: 1.2rem;
   justify-items: center;
 }
 
-.home-hero .site-nav,
+.site-nav,
 .home-hero .intro h1,
 .home-hero .intro .subtitle,
 .home-hero .intro .intro-header > div {
@@ -164,10 +140,6 @@ a {
   line-height: 1.62;
 }
 
-.home-page .site-nav {
-  justify-self: start;
-}
-
 .site-nav {
   display: flex;
   width: 100%;
@@ -175,6 +147,7 @@ a {
   align-items: center;
   gap: 1rem;
   font-size: 0.95rem;
+  justify-self: start;
 }
 
 .nav-group {
@@ -339,18 +312,6 @@ a {
   line-height: 1.15;
 }
 
-.project-status {
-  font-size: 0.8rem;
-  border-radius: 999px;
-  padding: 0.14rem 0.62rem;
-  border: 1px solid var(--color-background-tertiary);
-  color: var(--color-text-primary);
-  font-family: var(--font-project-heading);
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-}
-
 .project-header-link {
   font-size: 1.6rem;
   color: var(--color-text-primary);
@@ -361,18 +322,6 @@ a {
   text-underline-offset: 0.16rem;
   text-transform: lowercase;
   margin-right: 1.25rem;
-}
-
-.status-open {
-  background: var(--color-status-open-bg);
-  border-color: var(--color-status-open-border);
-  color: var(--color-status-open-text);
-}
-
-.status-closed {
-  background: var(--color-status-closed-bg);
-  border-color: var(--color-status-closed-border);
-  color: var(--color-status-closed-text);
 }
 
 .project-video {
@@ -518,14 +467,6 @@ a {
   row-gap: 0.6rem;
 }
 
-.project-subblock h5 {
-  margin: 0;
-  color: var(--color-text-tertiary);
-  font-size: 1.05rem;
-  font-weight: 600;
-  text-align: center;
-}
-
 .project-bullets {
   list-style-position: inside;
   hyphens: auto;
@@ -650,10 +591,6 @@ a {
     padding: 1.25rem 1rem 2rem;
   }
 
-  body.home-page {
-    padding: 1.25rem 1rem 2rem;
-  }
-
   .intro-header {
     align-items: baseline;
   }
@@ -711,7 +648,6 @@ a {
   .project-name,
   .project-description,
   .project-bullets li,
-  .project-status,
   .project-video {
     min-width: 0;
     overflow-wrap: anywhere;
