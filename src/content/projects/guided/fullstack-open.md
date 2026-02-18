@@ -7,5 +7,4 @@ otherNotes: Great pacing; strong testing modules.
 imageUrl: /images/fullstack-open.png
 imageAlt: Fullstack Open project screenshot
 externalUrl: https://fullstackopen.com/en/
-externalLabel: Course website
 ---

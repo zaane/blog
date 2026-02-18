@@ -8,6 +8,7 @@ whatItIs: |-
 whatILearned: |-
   - C programming fundamentals like dynamic memory management, syscalls, and interaction with POSIX APIs. 
   - Deeper understanding of how the terminal actually works, including deep dives into the history of C, Unix, computer terminals, and the ASCII standard. 
+  - Concrete application of basic C constructs, data structures, and data buffering. Scaffolding of simple algorithms in conjunction with understanding of the problem space to achieve desired results.
   - Principles of designing and writing good programs using iterative development: letting abstractions emerge from requirements in the process of building, and incremental refactoring to facilitate adding and expanding features.
 otherNotes: |-
   At the time I did this project, I had never heard of Salvatore Sanfilippo (antirez), who [wrote the original version of it as a weekend project](https://antirez.com/news/108).
@@ -16,9 +17,8 @@ otherNotes: |-
 
   His [Corso di programmazione in C](https://www.youtube.com/watch?v=HjXBXBgfKyk&list=PLrEMgOSrS_3cFJpM2gdw8EGFyRBZOyAKY&pp=0gcJCbUEOCosWNin) is also a masterclass introduction, not only to the C language, but also to the theory of computation and how to design and think about programs.
 
-  The discovery of Salvatore and his channel has been truly transformative for me in my development as a programmer, as a student of Italian, and as a human being in general.
+  The discovery of Salvatore and his channel has been truly transformative for me in my development as a programmer, as a student of Italian, and as a human being in general. I feel very fortunate to have him as an example to aspire to.
 image: ../../../images/kilo.png
 imageAlt: Kilo screenshot
 externalUrl: https://viewsourcecode.org/snaptoken/kilo/
-externalLabel: Build your own text editor
 ---
