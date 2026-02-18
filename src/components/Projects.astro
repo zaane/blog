@@ -36,7 +36,11 @@ const isPlaceholderProject = (project: Project) =>
             <h3 id={`projects-${section.id}`} class="project-category-title">
               {section.title}
             </h3>
-            <p class="project-category-description">{section.description}</p>
+            {
+              section.description ? (
+                <p class="project-category-description">{section.description}</p>
+              ) : null
+            }
           </header>
 
           {

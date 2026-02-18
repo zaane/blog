@@ -67,6 +67,7 @@ html {
   color: var(--color-text-primary);
   font-family: var(--font-base);
   scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
   scrollbar-gutter: stable;
 }
 
@@ -223,7 +224,8 @@ a {
 
 .project-category-title {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
 }
 
 .project-category-description {
