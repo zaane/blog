@@ -2,9 +2,9 @@
 name: Kilo text editor
 order: 1
 whatItIs: |-
-  This is a guide on building a text editor in C, based on [antirez's](https://en.wikipedia.org/wiki/Salvatore_Sanfilippo) [kilo](https://github.com/antirez/kilo). The code comes in at about 1000 lines and writing it is broken into 184 steps. The build is truly from scratch, with no external dependencies - you use the termios API and raw VT100 escape sequences to manage user input and create the terminal user interface.
+  This is a guide on building a text editor in C, based on [antirez's](https://en.wikipedia.org/wiki/Salvatore_Sanfilippo) [kilo](https://github.com/antirez/kilo). You write about 1000 lines of code in a little under 200 incremental steps. The build is truly from scratch, with no external dependencies - you use the termios API and raw VT100 escape sequences to manage user input and create the terminal user interface.
 
-  After chapter 5, you have a fully functional text editor *that you can then start using to implement extra features*, like search and syntax highlighting. If making your own text editor inside your own text editor sounds like fun to you, I highly recommend working through this.
+  After chapter 5, you have a fully functional text editor *that you can then start using to implement additional features*, like search and syntax highlighting. If making your own text editor inside your own text editor sounds like fun to you, I highly recommend working through this.
 whatILearned: |-
   - C programming fundamentals like dynamic memory management, syscalls, and interaction with POSIX APIs. 
   - Deeper understanding of how the terminal actually works, including deep dives into the history of C, Unix, computer terminals, and the ASCII standard. 
