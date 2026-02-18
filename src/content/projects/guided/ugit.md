@@ -2,7 +2,7 @@
 name: ugit
 order: 3
 whatItIs: |-
-  A step-by-step clone of the Git version control system, implemented in Python. A fast track to a deeper understanding of both the [plumbing and the porcelain](https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain) of Git.
+  A toy copy of the Git version control system, implemented in Python. A fast track to a deeper understanding of both the [plumbing and the porcelain](https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain) of Git.
 
   If you want to get better at Python and make your git commands a little less mysterious, this is a great (and not too long) project to try.
 whatILearned: |-

@@ -377,12 +377,10 @@ a {
 
 .project-image {
   display: block;
-  width: auto;
+  width: 100%;
   max-width: 100%;
   height: auto;
-  max-height: 26rem;
-  margin-inline: auto;
-  object-fit: contain;
+  margin-inline: 0;
   border: 1px solid var(--color-background-tertiary);
   border-radius: 10px;
   background: var(--color-background-primary);
@@ -577,26 +575,6 @@ a {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .project-card.project-card-has-image
-    .project-main-content.project-main-content-image-fit {
-    align-self: stretch;
-    min-height: 0;
-    position: relative;
-    display: block;
-  }
-
-  .project-card.project-card-has-image
-    .project-main-content.project-main-content-image-fit
-    .project-image {
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-  }
-
   .project-card-head {
     grid-area: head;
   }
@@ -615,6 +593,12 @@ a {
     grid-area: features;
     align-self: start;
     height: auto;
+  }
+
+  .project-card.project-card-guided
+    > .project-block.project-block-guided-what-it-is {
+    align-self: stretch;
+    height: 100%;
   }
 
   .project-block-roadmap {
