@@ -466,14 +466,22 @@ a {
 .page-content {
   width: 80%;
   margin: 0 auto;
-  h3 {
-    margin-top: 2rem;
-    margin-bottom: 0.5rem;
+
+  h2 {
+    font-size: 2rem;
   }
-  p {
-    hyphens: auto;
-    text-indent: 1rem;
-    margin-top: 0;
+
+  div {
+    margin-bottom: 2rem;
+
+    h3 {
+      margin-bottom: 0.25rem;
+    }
+    p {
+      hyphens: auto;
+      text-indent: 1rem;
+      margin-top: 0;
+    }
   }
 }
 
