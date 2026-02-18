@@ -489,6 +489,18 @@ a {
   line-height: 1.45;
 }
 
+.page-content {
+  width: 80%;
+  margin: 0 auto;
+  h3 {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  p {
+    margin-top: 0;
+  }
+}
+
 @media (min-width: 1024px) {
   .projects-section .project-list {
     align-items: stretch;

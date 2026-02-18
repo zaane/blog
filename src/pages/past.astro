@@ -10,11 +10,56 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const iconHref = `${basePath}orca.svg`;
-const skills = ["JavaScript", "TypeScript", "React", "CSS", "HTML"];
 
 const skillColor = "white";
 const fontWeight = "bold";
 const textCase = "uppercase";
+
+const courses = [
+  {
+    name: "The Odin Project",
+    url: "https://www.theodinproject.com/",
+    description: "full stack javascript, html, css",
+  },
+  {
+    name: "Full Stack Open",
+    url: "https://fullstackopen.com/en/",
+    description: "MERN stack, Typescript, authentication, testing",
+  },
+  {
+    name: "Code With Andrea",
+    url: "https://codewithandrea.com/",
+    description: "Dart, Flutter, frontend architecture and testing",
+  },
+  {
+    name: "Corso di programmazione in C",
+    url: "https://www.youtube.com/watch?v=HjXBXBgfKyk&list=PLrEMgOSrS_3cFJpM2gdw8EGFyRBZOyAKY",
+    description: "masterclass in C",
+  },
+];
+
+const builds = [
+  {
+    name: "kilo text editor",
+    url: "https://viewsourcecode.org/snaptoken/kilo/",
+    description: "write a text editor using itself",
+  },
+  {
+    name: "ugit",
+    url: "https://www.leshenko.net/p/ugit/#",
+    description: "you know the porcelain, now see the plumbing",
+  },
+  {
+    name: "web browser",
+    url: "https://browser.engineering",
+    description: "you mean somebody actually reads all this CSS?",
+  },
+  {
+    name: "8-bit computer",
+    url: "https://www.youtube.com/@BenEater/courses",
+    description: "just like Nintendo used to make",
+  },
+];
 ---
 
 <html lang="en">
@@ -39,23 +84,60 @@ const textCase = "uppercase";
   <body>
     <main class="page page-shell">
       <Nav />
-      <h2>education</h2>
-      <p>
-        B.S. in Physics from the University of Texas at Dallas. Electives in
-        math, computer science, literature, and philosophy. Research in
-        nanotechnology.
-      </p>
-      <p>
-        I feel very fortunate to have received a liberal education and I believe
-        everyone deserves the right to have one free of charge. I am profoundly
-        grateful to each of my instructors who showed me why their chosen field
-        of study could be worth dedicating a lifetime to.
-      </p>
-      <h2>past adventures</h2>
-      <p>
-        Ask me about my homelab, scraping my own grocery data, simulating
-        tabletop dice rolls, or implementing Italian grammar in code.
-      </p>
+      <div class="page-content">
+        <div class="education">
+          <h3>Education</h3>
+          <p>
+            I have a B.S. in Physics from the University of Texas at Dallas.
+            Electives in math, computer science, literature, and philosophy.
+            Research in nanotechnology.
+          </p>
+          <p>
+            I feel very fortunate to have received a liberal education and I
+            believe everyone deserves the right to have one of their own free of
+            charge. I am profoundly grateful to each of my instructors who
+            showed me why their chosen field of study could be worth dedicating
+            a lifetime to.
+          </p>
+        </div>
+        <div class="previous">
+          <h3>Past experiments</h3>
+          <p>
+            Ask me about my homelab, scraping my own grocery data, simulating
+            tabletop dice rolls, or implementing Italian grammar in code.
+          </p>
+        </div>
+        <div class="courses">
+          <h3>Courses</h3>
+          <ul>
+            {
+              courses.map((course) => (
+                <li>
+                  <>
+                    <a href={course.url}>{course.name}</a>
+                    <span>({course.description})</span>
+                  </>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="builds">
+          <h3>Builds</h3>
+          <ul>
+            {
+              builds.map((build) => (
+                <li>
+                  <>
+                    <a href={build.url}>{build.name}</a>
+                    <span>({build.description})</span>
+                  </>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
     </main>
   </body>
 </html>
