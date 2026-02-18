@@ -467,6 +467,8 @@ a {
   width: 80%;
   margin: 0 auto;
 
+  font-family: var(--font-project-body);
+
   h2 {
     font-size: 2rem;
   }
