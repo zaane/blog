@@ -556,6 +556,14 @@ a {
   .project-block-tech {
     grid-area: tech;
   }
+
+  .project-card > .project-block.project-block-guided-learned {
+    grid-area: tech;
+  }
+
+  .project-card > .project-block.project-block-guided-notes {
+    grid-area: roadmap;
+  }
 }
 
 @media (min-width: 641px) and (max-width: 1023px) {

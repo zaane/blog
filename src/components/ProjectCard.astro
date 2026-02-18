@@ -180,7 +180,7 @@ const statusClass =
 
         {
           isGuidedEntry && hasGuidedLearned ? (
-            <section class="project-block project-block-roadmap">
+            <section class="project-block project-block-roadmap project-block-guided-learned">
               <h4>What I learned</h4>
               <p class="project-paragraph">{project.whatILearned}</p>
             </section>
@@ -189,7 +189,7 @@ const statusClass =
 
         {
           isGuidedEntry && hasGuidedNotes ? (
-            <section class="project-block project-block-tech">
+            <section class="project-block project-block-tech project-block-guided-notes">
               <h4>Other notes</h4>
               <p class="project-paragraph">{project.otherNotes}</p>
             </section>
