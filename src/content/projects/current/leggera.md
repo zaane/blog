@@ -25,7 +25,6 @@ currentFeatures:
   - Query LLMs to help understand words in context and add information to flashcards.
 nextSteps:
   - Create dashboard views so the user can view their vocabulary progress and gauge their readiness for new content.
-  - Integrate word tracking into YouTube viewer to faciliate learning from video content. Use official YouTube API to let users log in and access playlists.
   - Enhance ebook parsing to be more robust in the face of varied ebook formats.
   - Create a browser extension to allow importing arbitrary content from the web.
 ---
