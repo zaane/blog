@@ -7,20 +7,6 @@ interface Props {
 }
 
 const { projects } = Astro.props as Props;
-const isPlaceholderProject = (project: Project) =>
-  !project.videoUrl &&
-  !project.videoLabel &&
-  !project.image &&
-  !project.imageUrl &&
-  !project.externalUrl &&
-  !project.description &&
-  (project.currentFeatures?.length ?? 0) === 0 &&
-  (project.nextSteps?.length ?? 0) === 0 &&
-  (project.techStack?.frontend?.length ?? 0) === 0 &&
-  (project.techStack?.backend?.length ?? 0) === 0 &&
-  !project.whatItIs &&
-  !project.whatILearned &&
-  !project.otherNotes;
 ---
 
 <section aria-labelledby="projects-heading" class="section projects-section">
@@ -31,20 +17,14 @@ const isPlaceholderProject = (project: Project) =>
     <span>Deployments coming soon; Source code available on request.</span>
   </header>
   {
-    projects.length > 0 ? (
+    (
       <ul class="project-list">
         {projects.map((project) => (
-          <li
-            class={`project-item ${isPlaceholderProject(project) ? "project-item-placeholder" : ""}`}
-          >
+          <li class={`project-item`}>
             <ProjectCard project={project} />
           </li>
         ))}
       </ul>
-    ) : (
-      <div class="project-coming-soon" role="status">
-        Coming soon.
-      </div>
     )
   }
 </section>

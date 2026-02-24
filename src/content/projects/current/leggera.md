@@ -2,7 +2,7 @@
 name: Leggera
 order: 1
 status: Closed Source
-videoUrl: https://www.youtube.com/watch?v=PIuiSjJ9gbY
+videoUrl: https://www.youtube.com/watch?v=ROWaIwmIi6w
 videoTitle: leggera demo
 videoLabel: Demo video placeholder
 description: >-
